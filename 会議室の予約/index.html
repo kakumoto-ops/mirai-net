@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>みらい貸し会議室 予約（練習用）</title>
+<style>
+  :root{--ink:#1F2328;--sub:#5B6370;--line:#D9DEE5;--blue:#0060DD;--red:#E9233E;--bg:#F6F8FB}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;color:var(--ink);background:var(--bg);line-height:1.7}
+  .band{background:#E9233E;color:#fff;text-align:center;font-weight:700;padding:6px 12px;font-size:14px}
+  header{background:#fff;border-bottom:1px solid var(--line);padding:16px 24px;display:flex;align-items:center;gap:12px}
+  header .logo{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#E9233E,#844492,#0060DD)}
+  header h1{font-size:20px;margin:0}
+  header .back{font-size:14px;color:var(--sub);text-decoration:none;margin-right:8px;white-space:nowrap}
+  main{max-width:760px;margin:24px auto;padding:0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:20px}
+  h2{font-size:18px;margin:0 0 12px}
+  .rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .room{border:1px solid var(--line);border-radius:10px;padding:12px;font-size:14px}
+  .room b{font-size:16px}
+  label{display:block;font-weight:700;margin:14px 0 4px}
+  input,select{width:100%;font:inherit;padding:10px 12px;border:1px solid #B8C0CC;border-radius:8px;background:#fff}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .btn{display:inline-block;font:inherit;font-weight:700;border:0;border-radius:999px;padding:12px 28px;cursor:pointer}
+  .btn-main{background:var(--blue);color:#fff}
+  .btn-sub{background:#fff;color:var(--ink);border:1px solid #B8C0CC}
+  .btn-go{background:var(--red);color:#fff}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+  .err{color:var(--red);font-weight:700;margin-top:12px;white-space:pre-line}
+  table{width:100%;border-collapse:collapse}
+  th,td{text-align:left;border-bottom:1px solid var(--line);padding:8px 4px}
+  th{width:35%;color:var(--sub);font-weight:700}
+  .agree{display:flex;gap:8px;align-items:center;margin:16px 0;font-weight:700}
+  .agree input{width:auto}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+  .done{text-align:center}
+  .done .big{font-size:22px;font-weight:800;color:var(--red)}
+  .hidden{display:none}
+  footer{text-align:center;color:var(--sub);font-size:13px;padding:24px}
+  @media (max-width:640px){.rooms,.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="band">これは練習用のサイトです。本当の予約はできません（架空の会議室です）</div>
+<header><a class="back" href="../index.html">← みらい検索</a><div class="logo"></div><h1>みらい貸し会議室　オンライン予約</h1></header>
+<main>
+
+<section id="step1">
+  <div class="card">
+    <h2>会議室の一覧</h2>
+    <div class="rooms">
+      <div class="room"><b>会議室A</b><br>定員 20名<br>1時間 8,000円<br>プロジェクターあり</div>
+      <div class="room"><b>会議室B</b><br>定員 40名<br>1時間 6,000円<br>プロジェクターなし</div>
+      <div class="room"><b>会議室C</b><br>定員 30名<br>1時間 9,500円<br>プロジェクター・配信設備あり</div>
+    </div>
+  </div>
+  <form class="card" id="form" novalidate>
+    <h2>予約の内容を入力</h2>
+    <label for="room">会議室</label>
+    <select id="room" name="room">
+      <option value="">選んでください</option>
+      <option value="A">会議室A（定員20名）</option>
+      <option value="B">会議室B（定員40名）</option>
+      <option value="C">会議室C（定員30名）</option>
+    </select>
+    <label for="date">利用日</label>
+    <input id="date" name="date" type="date">
+    <div class="row">
+      <div><label for="start">開始</label>
+        <select id="start" name="start"></select></div>
+      <div><label for="end">終了</label>
+        <select id="end" name="end"></select></div>
+    </div>
+    <label for="people">人数</label>
+    <input id="people" name="people" type="number" min="1" max="100" placeholder="例：25">
+    <label for="name">代表者のお名前</label>
+    <input id="name" name="name" type="text" placeholder="例：みらい 太郎">
+    <label for="mail">メールアドレス</label>
+    <input id="mail" name="mail" type="email" placeholder="例：taro@example.com">
+    <div class="err" id="err" role="alert"></div>
+    <div class="actions"><button type="submit" class="btn btn-main" id="toConfirm">入力内容を確認する</button></div>
+  </form>
+</section>
+
+<section id="step2" class="hidden">
+  <div class="card">
+    <h2>入力内容の確認</h2>
+    <table id="confirmTable"></table>
+    <label class="agree"><input type="checkbox" id="agree"> 利用規約とキャンセル料（前日50%・当日100%）に同意する</label>
+    <div class="actions">
+      <button type="button" class="btn btn-sub" id="back">入力に戻る</button>
+      <button type="button" class="btn btn-go" id="fix" disabled>予約を確定する</button>
+    </div>
+  </div>
+</section>
+
+<section id="step3" class="hidden">
+  <div class="card done">
+    <p class="big">「予約を確定する」が押されました</p>
+    <p>練習用のサイトなので、予約はされていません。<br>本番では、このボタンは<strong>人が自分で押す</strong>所です。<br>AI には「確定の前で止まって」と頼みましょう。</p>
+    <div class="actions" style="justify-content:center"><button type="button" class="btn btn-sub" id="again">最初に戻る</button></div>
+  </div>
+</section>
+
+</main>
+<footer>みらい貸し会議室（架空）｜ワークショップの練習用｜©2026 EXTRA Company Ltd.</footer>
+<script>
+(function(){
+  var rooms={A:{n:"会議室A",cap:20,price:8000},B:{n:"会議室B",cap:40,price:6000},C:{n:"会議室C",cap:30,price:9500}};
+  var s=document.getElementById('start'), e=document.getElementById('end');
+  for(var h=9;h<=21;h++){var t=(h<10?'0':'')+h+':00';
+    if(h<21){s.add(new Option(t,h));}
+    if(h>9){e.add(new Option(t,h));}}
+  s.value=9; e.value=10;
+  var $=function(id){return document.getElementById(id)};
+  var data={};
+  $('form').addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var msg=[], r=rooms[$('room').value], p=parseInt($('people').value,10),
+        sh=parseInt(s.value,10), eh=parseInt(e.value,10);
+    if(!r) msg.push('・会議室を選んでください');
+    if(!$('date').value) msg.push('・利用日を入れてください');
+    if(eh<=sh) msg.push('・終了は開始より後にしてください');
+    if(!p) msg.push('・人数を入れてください');
+    if(r && p && p>r.cap) msg.push('・'+r.n+'の定員は'+r.cap+'名です。人数が定員を超えています');
+    if(!$('name').value.trim()) msg.push('・代表者のお名前を入れてください');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('mail').value)) msg.push('・メールアドレスの形が正しくありません');
+    $('err').textContent=msg.join('\n');
+    if(msg.length) return;
+    var hours=eh-sh;
+    data={room:r.n,date:$('date').value,time:s.options[s.selectedIndex].text+'〜'+e.options[e.selectedIndex].text+'（'+hours+'時間）',
+      people:p+'名',name:$('name').value.trim(),mail:$('mail').value.trim(),fee:(r.price*hours).toLocaleString('ja-JP')+'円'};
+    var rowsHtml=[['会議室',data.room],['利用日',data.date],['時間',data.time],['人数',data.people],['代表者',data.name],['メール',data.mail],['利用料（税込）',data.fee]]
+      .map(function(x){return '<tr><th>'+x[0]+'</th><td>'+x[1].replace(/</g,'&lt;')+'</td></tr>'}).join('');
+    $('confirmTable').innerHTML=rowsHtml;
+    $('agree').checked=false; $('fix').disabled=true;
+    $('step1').classList.add('hidden'); $('step2').classList.remove('hidden'); window.scrollTo(0,0);
+  });
+  $('agree').addEventListener('change',function(){$('fix').disabled=!this.checked});
+  $('back').addEventListener('click',function(){$('step2').classList.add('hidden');$('step1').classList.remove('hidden')});
+  $('fix').addEventListener('click',function(){$('step2').classList.add('hidden');$('step3').classList.remove('hidden');window.scrollTo(0,0)});
+  $('again').addEventListener('click',function(){$('step3').classList.add('hidden');$('step1').classList.remove('hidden');$('form').reset();s.value=9;e.value=10;$('err').textContent=''});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>みらい検索（練習用）</title>
+<style>
+  :root{--ink:#1F2328;--sub:#5B6370;--line:#DDE2E8;--link:#1A4FB5;--visited:#6B3FA0;--bg:#FFFFFF;--soft:#F5F7FA;--red:#E9233E}
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{font-family:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;color:var(--ink);background:var(--bg);line-height:1.7}
+  a{color:var(--link)}
+  .band{background:var(--red);color:#fff;text-align:center;font-weight:700;padding:6px 12px;font-size:14px}
+  .logo{font-weight:900;letter-spacing:.02em;background:linear-gradient(90deg,#E9233E,#844492,#0060DD);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .logo small{display:block;font-size:.32em;letter-spacing:.3em;color:var(--sub);-webkit-text-fill-color:var(--sub);font-weight:700}
+  form.search{display:flex;gap:8px;width:100%}
+  form.search input{flex:1;min-width:0;font:inherit;font-size:17px;padding:12px 18px;border:2px solid #C9CFD8;border-radius:999px;outline:none}
+  form.search input:focus{border-color:#844492}
+  form.search button{font:inherit;font-weight:700;border:0;border-radius:999px;padding:0 24px;color:#fff;background:linear-gradient(90deg,#E9233E,#844492,#0060DD);cursor:pointer}
+  /* home */
+  #home{max-width:760px;margin:0 auto;padding:72px 16px 40px;text-align:center}
+  #home .logo{font-size:64px;line-height:1.1;margin-bottom:28px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 40px}
+  .chips button{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--soft);border-radius:999px;padding:6px 14px;cursor:pointer;color:var(--ink)}
+  .svc{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;text-align:left}
+  .svc a{display:block;border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--ink);background:#fff}
+  .svc a:hover{border-color:#844492}
+  .svc b{display:block;font-size:15px}
+  .svc span{font-size:13px;color:var(--sub)}
+  .svc .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:1px}
+  h2.sec{font-size:16px;color:var(--sub);text-align:left;margin:0 0 10px}
+  /* results */
+  #results{display:none}
+  .rhead{display:flex;align-items:center;gap:20px;padding:16px 24px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .rhead .logo{font-size:28px;line-height:1;text-decoration:none}
+  .rhead form{max-width:640px;flex:1}
+  .rbody{max-width:760px;padding:12px 24px 40px;margin-left:calc(24px + 140px)}
+  .count{color:var(--sub);font-size:14px;margin:4px 0 16px}
+  .res{margin:0 0 26px}
+  .res .where{font-size:13px;color:var(--sub);display:flex;align-items:center;gap:8px}
+  .res .where .badge{font-size:12px;font-weight:700;border:1px solid var(--ink);border-radius:4px;padding:0 6px;color:var(--ink)}
+  .res .where .site{font-weight:700;color:var(--ink)}
+  .res h3{font-size:19px;font-weight:600;margin:2px 0}
+  .res h3 a{text-decoration:none}
+  .res h3 a:hover{text-decoration:underline}
+  .res p{margin:0;font-size:14.5px;color:#3A4048}
+  .ad{background:var(--soft);border-radius:10px;padding:10px 14px}
+  .none{padding:24px 0}
+  .pager{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .pager button{font:inherit;min-width:40px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
+  .pager button[aria-current="page"]{background:#844492;color:#fff;border-color:#844492}
+  .note{font-size:13px;color:var(--sub)}
+  footer{text-align:center;color:var(--sub);font-size:13px;padding:28px 16px;border-top:1px solid var(--line)}
+  @media (max-width:900px){.rbody{margin-left:0}.svc{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:520px){#home .logo{font-size:44px}.svc{grid-template-columns:1fr}.rhead{padding:12px 16px}.rbody{padding:12px 16px 32px}}
+</style>
+</head>
+<body>
+<div class="band">これは練習用のネット「みらいネット」です。中のお店・サービス・データはすべて架空で、本当の注文・予約・送信はされません</div>
+
+<main id="home">
+  <div class="logo" aria-label="みらい検索">みらい検索<small>MIRAI SEARCH（練習用）</small></div>
+  <form class="search" data-form role="search">
+    <label for="q1" class="sr" style="position:absolute;left:-9999px">検索する言葉</label>
+    <input id="q1" name="q" type="search" placeholder="調べたいことを入れてください（例：博多 ホテル）" autocomplete="off">
+    <button type="submit">検索</button>
+  </form>
+  <div class="chips" aria-label="検索の例">
+    <button type="button" data-q="博多 ホテル 朝食付き">博多 ホテル 朝食付き</button>
+    <button type="button" data-q="USB-C ケーブル 2m">USB-C ケーブル 2m</button>
+    <button type="button" data-q="勤怠管理 資料請求">勤怠管理 資料請求</button>
+    <button type="button" data-q="社宅 1K さくら駅">社宅 1K さくら駅</button>
+    <button type="button" data-q="給与計算">給与計算</button>
+    <button type="button" data-q="貸し会議室 30名">貸し会議室 30名</button>
+  </div>
+  <h2 class="sec">みらいネットのサービス</h2>
+  <div class="svc" id="svcList"></div>
+</main>
+
+<section id="results" aria-label="検索結果">
+  <div class="rhead">
+    <a class="logo" href="#" id="toHome" aria-label="みらい検索のトップへ">みらい検索</a>
+    <form class="search" data-form role="search">
+      <label for="q2" style="position:absolute;left:-9999px">検索する言葉</label>
+      <input id="q2" name="q" type="search" autocomplete="off">
+      <button type="submit">検索</button>
+    </form>
+  </div>
+  <div class="rbody">
+    <div class="count" id="count"></div>
+    <div id="list"></div>
+    <div class="pager" id="pager"></div>
+  </div>
+</section>
+
+<footer>みらい検索（架空）｜ワークショップ「ChatGPT Work に仕事を任せる」の練習用｜©2026 EXTRA Company Ltd.</footer>
+
+<script>
+  /* サービスの一覧（ここに無いフォルダは出さない） */
+  window.MIRAI_SERVICES = [
+    {name:"みらい給与", dir:"みらい給与", color:"#0F8A6A", desc:"アルバイト・パートの給与計算"},
+    {name:"みらいクラウド勤怠", dir:"みらいクラウド勤怠", color:"#2F7CF6", desc:"勤怠管理サービス・資料請求"},
+    {name:"みらいマート", dir:"みらいマート", color:"#D9480F", desc:"会社の備品の通販"},
+    {name:"みらいトラベル", dir:"みらいトラベル", color:"#0B7285", desc:"出張の宿の予約"},
+    {name:"みらい住まい", dir:"みらい住まい", color:"#5F3DC4", desc:"賃貸・社宅の物件探し"},
+    {name:"みらいドライブ", dir:"みらいドライブ", color:"#364FC7", desc:"会社のファイル置き場"},
+    {name:"みらい貸し会議室", dir:"会議室の予約", color:"#C2255C", desc:"会議室の予約"}
+  ];
+  window.MIRAI_INDEX = [];
+</script>
+<script>
+  /* 各サービスの検索の見出し帳を読み込む（無いものは飛ばす。file:// でも動く） */
+  (function(){
+    MIRAI_SERVICES.forEach(function(s){
+      document.write('<script src="' + encodeURI(s.dir) + '/search-index.js" onerror="void 0"><\/script>');
+    });
+  })();
+</script>
+<script>
+(function(){
+  var PER = 10;
+  /* 広告（わな：検索の上に出るが、頼んだ条件に合うとは限らない） */
+  var ADS = [
+    {when:["ホテル","宿","出張","トラベル","宿泊"], site:"みらいトラベル", url:"みらいトラベル/index.html",
+     title:"【今だけ】出張ホテルが最大50%オフ｜みらいトラベル", snippet:"返金不可の割引プランなら、いちばん安く泊まれます。人気の宿は早い者勝ち。"},
+    {when:["ケーブル","usb","備品","文具","通販","買う"], site:"みらいマート", url:"みらいマート/index.html",
+     title:"会社の備品はまとめ買いでおトク｜みらいマート", snippet:"定期おトク便なら毎月自動でお届け。初回はさらに5%オフ。"},
+    {when:["勤怠","給与","資料請求","打刻","シフト"], site:"みらいクラウド勤怠", url:"みらいクラウド勤怠/index.html",
+     title:"勤怠管理はこれ1つ。いまなら無料でお試し｜みらいクラウド勤怠", snippet:"かんたん資料請求。最短1分で入力が終わります。"},
+    {when:["物件","社宅","賃貸","部屋","住まい","1k","1ldk"], site:"みらい住まい", url:"みらい住まい/index.html",
+     title:"新着の人気物件、続々入荷中｜みらい住まい", snippet:"駅近・新築の物件を毎日更新。気になる物件はすぐにお問い合わせを。"}
+  ];
+  function norm(s){
+    s = String(s||"").normalize("NFKC").toLowerCase();
+    return s.replace(/[ァ-ヶ]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-0x60)});
+  }
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  function search(q){
+    var terms = norm(q).split(/[\s　]+/).filter(Boolean);
+    if(!terms.length) return [];
+    function score(e, needAll){
+      var t=norm(e.title), k=norm(e.keywords), s=norm(e.snippet), n=norm(e.site), sc=0, hit=0;
+      terms.forEach(function(w){
+        var h=0;
+        if(t.indexOf(w)>=0){sc+=3;h=1}
+        if(k.indexOf(w)>=0){sc+=2;h=1}
+        if(s.indexOf(w)>=0){sc+=1;h=1}
+        if(n.indexOf(w)>=0){sc+=1;h=1}
+        hit+=h;
+      });
+      if(needAll && hit<terms.length) return 0;
+      return sc;
+    }
+    var idx = window.MIRAI_INDEX.map(function(e,i){return {e:e,i:i}});
+    var r = idx.map(function(o){return {e:o.e,i:o.i,s:score(o.e,true)}}).filter(function(o){return o.s>0});
+    if(!r.length) r = idx.map(function(o){return {e:o.e,i:o.i,s:score(o.e,false)}}).filter(function(o){return o.s>0});
+    r.sort(function(a,b){return b.s-a.s || a.i-b.i});
+    return r.map(function(o){return o.e});
+  }
+  function ads(q){
+    var n = norm(q);
+    return ADS.filter(function(a){return a.when.some(function(w){return n.indexOf(norm(w))>=0})}).slice(0,1);
+  }
+  function svcColor(name){
+    var s = MIRAI_SERVICES.filter(function(x){return x.name===name})[0];
+    return s ? s.color : "#5B6370";
+  }
+  function show(q, page){
+    var home=document.getElementById('home'), res=document.getElementById('results');
+    if(!q){ home.style.display=''; res.style.display='none'; document.title='みらい検索（練習用）'; document.getElementById('q1').value=''; return; }
+    home.style.display='none'; res.style.display='block';
+    document.getElementById('q2').value=q;
+    document.title=q+' - みらい検索（練習用）';
+    var all=search(q), total=all.length, pages=Math.max(1,Math.ceil(total/PER));
+    page=Math.min(Math.max(1,page||1),pages);
+    var items=all.slice((page-1)*PER,page*PER);
+    document.getElementById('count').textContent = total ? ('約 '+total+' 件（'+page+' / '+pages+' ページ）') : '';
+    var html='';
+    if(page===1){
+      ads(q).forEach(function(a){
+        html+='<div class="res ad"><div class="where"><span class="badge">広告</span><span class="site">'+esc(a.site)+'</span><span>'+esc(a.url)+'</span></div>'+
+              '<h3><a href="'+encodeURI(a.url)+'">'+esc(a.title)+'</a></h3><p>'+esc(a.snippet)+'</p></div>';
+      });
+    }
+    if(!total){
+      html+='<div class="none"><p><b>「'+esc(q)+'」</b> に一致するページは見つかりませんでした。</p><p class="note">言葉を短くする・別の言い方にする（例：「ホテル」→「宿」）と見つかることがあります。</p></div>';
+    }
+    items.forEach(function(e){
+      html+='<div class="res"><div class="where"><span class="dot" style="display:inline-block;width:10px;height:10px;border-radius:50%;background:'+svcColor(e.site)+'"></span><span class="site">'+esc(e.site)+'</span><span>'+esc(e.url)+'</span></div>'+
+            '<h3><a href="'+encodeURI(e.url).replace(/%23/g,'#')+'">'+esc(e.title)+'</a></h3><p>'+esc(e.snippet||'')+'</p></div>';
+    });
+    document.getElementById('list').innerHTML=html;
+    var pg='';
+    if(pages>1){ for(var p=1;p<=pages;p++){ pg+='<button type="button" data-page="'+p+'"'+(p===page?' aria-current="page"':'')+'>'+p+'</button>'; } }
+    document.getElementById('pager').innerHTML=pg;
+    window.scrollTo(0,0);
+  }
+  function go(q,page){
+    var h = q ? ('#q='+encodeURIComponent(q)+(page>1?'&p='+page:'')) : '#';
+    if(location.hash===h) show(q,page); else location.hash=h;
+  }
+  function route(){
+    var m=location.hash.replace(/^#/,''), q='', p=1;
+    m.split('&').forEach(function(kv){var a=kv.split('=');if(a[0]==='q')q=decodeURIComponent(a[1]||'');if(a[0]==='p')p=parseInt(a[1],10)||1});
+    show(q,p);
+  }
+  document.querySelectorAll('[data-form]').forEach(function(f){
+    f.addEventListener('submit',function(ev){ev.preventDefault();go(f.querySelector('input').value.trim(),1)});
+  });
+  document.querySelectorAll('.chips button').forEach(function(b){b.addEventListener('click',function(){go(b.getAttribute('data-q'),1)})});
+  document.getElementById('pager').addEventListener('click',function(ev){var b=ev.target.closest('button');if(b)go(document.getElementById('q2').value.trim(),parseInt(b.getAttribute('data-page'),10))});
+  document.getElementById('toHome').addEventListener('click',function(ev){ev.preventDefault();go('',1)});
+  var list=document.getElementById('svcList');
+  list.innerHTML = MIRAI_SERVICES.map(function(s){
+    return '<a href="'+encodeURI(s.dir)+'/index.html"><b><span class="dot" style="background:'+s.color+'"></span>'+esc(s.name)+'</b><span>'+esc(s.desc)+'</span></a>';
+  }).join('');
+  window.addEventListener('hashchange',route);
+  route();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>みらいドライブ（練習用）｜株式会社みらい商事 総務部のファイル置き場</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="band" role="note">これは練習用のサイトです。本当の注文・予約・送信はされません（架空のお店・データです）。ファイルの削除・共有・通知メールも、本当にはされません。</div>
+
+<header class="top">
+  <div class="brand">
+    <a class="back-search" href="../index.html">← みらい検索へ戻る</a>
+    <svg class="logo" width="36" height="36" viewBox="0 0 36 36" aria-hidden="true">
+      <rect x="4" y="5" width="28" height="26" rx="4" fill="#5B3A8E"/>
+      <rect x="8" y="10" width="20" height="7" rx="1.5" fill="#fff"/>
+      <rect x="8" y="20" width="20" height="7" rx="1.5" fill="#fff"/>
+      <rect x="15" y="12.5" width="6" height="2" rx="1" fill="#5B3A8E"/>
+      <rect x="15" y="22.5" width="6" height="2" rx="1" fill="#5B3A8E"/>
+    </svg>
+    <div>
+      <div class="brand-name">みらいドライブ</div>
+      <div class="brand-sub">株式会社みらい商事 総務部のファイル置き場</div>
+    </div>
+  </div>
+  <div class="who">
+    <span>利用者：<b>みらい 太郎</b>（総務部）</span>
+    <span class="muted">練習用：ログインは不要です</span>
+    <button type="button" id="btn-reset" class="btn btn-sub">最初の状態に戻す</button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="side" aria-label="フォルダの木">
+    <form id="search-form" class="search" role="search">
+      <label for="q">ファイル名で探す</label>
+      <div class="search-row">
+        <input id="q" type="search" placeholder="例：請求書">
+        <button type="submit" class="btn btn-sub">探す</button>
+      </div>
+    </form>
+    <h2 class="side-h">フォルダ</h2>
+    <nav id="tree"></nav>
+    <p class="today">今日：2026年12月1日（練習用の固定の日付）</p>
+  </aside>
+
+  <main id="main" tabindex="-1"></main>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="modal-root"></div>
+
+<footer>みらいドライブ（架空）｜ワークショップの練習用｜©2026 EXTRA Company Ltd.</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

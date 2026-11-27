@@ -1,0 +1,132 @@
+/* みらいトラベル（架空）— サイトの色は深い青緑 #0B7A75 の1色 */
+:root{--main:#0B7A75;--main-dark:#075955;--main-pale:#E6F3F2;--ink:#1F2328;--sub:#5B6370;--line:#D9DEE5;--bg:#F6F8FA;--red:#D32F2F;--ok:#1B7A3A;--ng:#B3261E}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;font-size:15px}
+a{color:var(--main-dark)}
+.band{background:#E9233E;color:#fff;text-align:center;font-weight:700;padding:6px 12px;font-size:14px}
+.site-header{background:#fff;border-bottom:1px solid var(--line)}
+.header-inner{max-width:1120px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.to-search{font-size:13px;font-weight:700;color:var(--main-dark);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;white-space:nowrap}
+.to-search:hover{background:var(--main-pale)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);margin-right:auto}
+.logo{width:36px;height:36px}
+.brand-name{font-size:20px;font-weight:800;color:var(--main-dark)}
+.brand-sub{font-size:13px;color:var(--sub)}
+main{max-width:1120px;margin:20px auto;padding:0 16px}
+footer{text-align:center;color:var(--sub);font-size:13px;padding:28px 16px;border-top:1px solid var(--line);background:#fff}
+h2{font-size:18px;margin:0 0 12px}
+h3{font-size:16px;margin:16px 0 6px}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:16px}
+.card.small{font-size:14px}
+.hero{background:#fff;border:1px solid var(--line);border-top:4px solid var(--main);border-radius:10px;padding:24px;margin-bottom:16px}
+.hero h2{font-size:22px}
+.hint{color:var(--sub);font-size:13px;margin:6px 0}
+.dots{margin:0;padding-left:1.2em}
+label{display:block;font-weight:700;margin:12px 0 4px;font-size:14px}
+input[type=text],input[type=tel],select,textarea{width:100%;font:inherit;padding:9px 10px;border:1px solid #B8C0CC;border-radius:6px;background:#fff;color:var(--ink)}
+textarea{resize:vertical}
+fieldset{border:1px solid var(--line);border-radius:8px;margin:14px 0;padding:8px 14px}
+legend{font-weight:700;font-size:14px;padding:0 4px}
+.grid5{display:grid;grid-template-columns:2fr 1.6fr 1fr 1fr 1fr;gap:12px}
+.grid4{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:12px}
+.search .btn{margin-top:12px}
+.btn{display:inline-block;font:inherit;font-weight:700;border:0;border-radius:6px;padding:11px 22px;cursor:pointer;text-decoration:none;text-align:center;line-height:1.4}
+.btn-small{padding:7px 14px;font-size:14px}
+.btn-main{background:var(--main);color:#fff}
+.btn-main:hover{background:var(--main-dark)}
+.btn-sub{background:#fff;color:var(--ink);border:1px solid #B8C0CC}
+.btn-go{background:var(--red);color:#fff;padding:13px 32px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.req{display:inline-block;background:var(--ng);color:#fff;font-size:11px;border-radius:4px;padding:0 6px;margin-left:6px;vertical-align:1px}
+.opt{display:inline-block;background:#EEF0F3;color:var(--sub);font-size:11px;border-radius:4px;padding:0 6px;margin-left:6px;vertical-align:1px}
+.err{color:var(--ng);font-weight:700;white-space:pre-line}
+.warn{background:#FDECEC;border:1px solid #F3B6B6;color:var(--ng);font-weight:700;border-radius:8px;padding:10px 14px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.actions.center{justify-content:center}
+.crumb{font-size:13px;color:var(--sub);margin-bottom:12px}
+.regions{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.region-link{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:8px;padding:14px 16px;font-weight:700;text-decoration:none;color:var(--ink);background:var(--main-pale)}
+.region-link span{color:var(--sub);font-weight:400;font-size:13px}
+.cond-bar{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 16px;margin-bottom:16px}
+.cond-bar p{margin:0}
+details summary{cursor:pointer;color:var(--main-dark);font-weight:700;margin:6px 0}
+.list-layout{display:grid;grid-template-columns:240px 1fr;gap:16px;align-items:start}
+.filters{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px}
+.filters h2{font-size:16px}
+.filters .btn{margin-top:14px;width:100%}
+.check{display:flex;align-items:center;gap:8px;margin:10px 0}
+.check input{width:18px;height:18px;margin:0}
+.check label{margin:0;font-weight:700}
+.list-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.count{margin:0;font-weight:700}
+.sorts{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:14px}
+.sort-btn{font:inherit;font-size:14px;border:1px solid #B8C0CC;background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.sort-btn[aria-pressed=true]{background:var(--main);color:#fff;border-color:var(--main)}
+.hotel-card{display:grid;grid-template-columns:160px 1fr 250px;gap:16px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:12px}
+.hotel-svg{width:100%;height:auto;border-radius:6px;display:block}
+.info h3{margin:0 0 4px;font-size:17px}
+.info h3 a{text-decoration:none}
+.info h3 a:hover{text-decoration:underline}
+.info p{margin:2px 0;font-size:14px}
+.catch{color:var(--sub)}
+.rating strong{font-size:16px;color:var(--main-dark)}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:4px;padding:0 6px;margin:2px 4px 2px 0;background:#F8FAFB;color:var(--ink);font-weight:400}
+.tag-ok{border-color:#9CCDAE;background:#EEF8F1;color:var(--ok)}
+.tag-ng{border-color:#E9A6A1;background:#FCEFEE;color:var(--ng)}
+.price{border-left:1px solid var(--line);padding-left:14px;display:flex;flex-direction:column;gap:2px}
+.price p{margin:0}
+.plan-name{font-size:13px;font-weight:700}
+.stay{font-size:12px;color:var(--sub);margin-top:4px!important}
+.amount{font-size:20px;font-weight:800}
+.amount small{font-size:12px;font-weight:400;color:var(--sub)}
+.per{font-size:12px;color:var(--sub)}
+.price .btn{margin-top:auto}
+.full-badge{display:inline-block;align-self:flex-start;background:#5B6370;color:#fff;font-weight:800;border-radius:4px;padding:2px 10px}
+.full-note{font-size:13px;color:var(--ng);font-weight:700}
+.full-box{background:#F1F2F4;border:1px solid var(--line);font-weight:700;border-radius:8px;padding:10px 14px}
+.hotel-top{display:grid;grid-template-columns:320px 1fr;gap:20px}
+.hotel-pic svg{width:100%;height:auto}
+.hotel-name{font-size:22px;margin:0}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;border-bottom:1px solid var(--line);padding:8px 6px;vertical-align:top}
+table.info th{width:30%;color:var(--sub);font-weight:700;white-space:nowrap}
+table.plans{min-width:760px}
+table.plans thead th{background:var(--main-pale);font-size:13px}
+table.plans caption,table.cal caption{text-align:left;font-weight:700;padding:4px 0 8px}
+td.num{text-align:right;white-space:nowrap}
+td.total{font-weight:800;font-size:15px}
+table.cal{min-width:520px}
+table.cal thead th{background:var(--main-pale);font-size:12px}
+table.cal tr.sat th{color:#1F4FA8}
+table.cal tr.sun th{color:var(--ng)}
+table.cal tr.fri th{color:var(--main-dark)}
+.policy dt{font-weight:700;margin-top:8px}
+.policy dd{margin:2px 0 0 0;color:var(--ink)}
+.steps{list-style:none;display:flex;gap:8px;padding:0;margin:0 0 14px}
+.steps li{flex:1;text-align:center;background:#fff;border:1px solid var(--line);border-radius:6px;padding:6px;font-size:14px;color:var(--sub)}
+.steps li.now{background:var(--main);color:#fff;border-color:var(--main);font-weight:700}
+.radio{display:flex;gap:8px;align-items:flex-start;margin:8px 0}
+.radio input{margin-top:5px}
+.radio label{margin:0;font-weight:400}
+.radio.disabled label{color:#9AA1AC}
+.agree{margin-top:18px}
+.done{text-align:center;padding:36px 20px}
+.done .big{font-size:22px;font-weight:800;color:var(--red)}
+.done .sub{color:var(--sub);font-size:14px}
+@media (max-width:900px){
+  .list-layout{grid-template-columns:1fr}
+  .hotel-card{grid-template-columns:120px 1fr}
+  .price{grid-column:1 / -1;border-left:0;border-top:1px solid var(--line);padding:10px 0 0}
+  .hotel-top{grid-template-columns:1fr}
+  .hotel-pic{max-width:320px}
+}
+@media (max-width:640px){
+  .grid5,.grid4{grid-template-columns:1fr 1fr}
+  .grid5>div:first-child{grid-column:1 / -1}
+  .regions{grid-template-columns:1fr}
+  .hotel-card{grid-template-columns:1fr}
+  .thumb{max-width:200px}
+  .brand-sub{display:none}
+}

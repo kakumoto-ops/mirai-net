@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>みらい給与（練習用）</title>
+<style>
+  :root{--ink:#1F2328;--sub:#5B6370;--line:#D9DEE5;--main:#0B7A75;--main-dark:#08605C;--main-pale:#E6F4F3;--red:#E9233E;--bg:#F5F7F9}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;color:var(--ink);background:var(--bg);line-height:1.7}
+  .band{background:#E9233E;color:#fff;text-align:center;font-weight:700;padding:6px 12px;font-size:14px}
+  header{background:#fff;border-bottom:1px solid var(--line)}
+  .head-in{max-width:1080px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .to-search{font-size:13px;font-weight:700;color:var(--main-dark);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;white-space:nowrap}
+  .to-search:hover{background:var(--main-pale)}
+  tr.pick td{background:var(--main-pale)}
+  main td a{color:var(--main-dark);font-weight:700}
+  .brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+  .brand h1{font-size:20px;margin:0;color:var(--main-dark)}
+  .brand small{display:block;font-size:12px;color:var(--sub);font-weight:400}
+  nav{display:flex;gap:4px;flex-wrap:wrap}
+  nav a{color:var(--ink);text-decoration:none;padding:6px 12px;border-radius:8px;font-weight:700;font-size:14px}
+  nav a:hover{background:var(--main-pale)}
+  nav a.on{background:var(--main);color:#fff}
+  main{max-width:1080px;margin:20px auto;padding:0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin-bottom:20px}
+  h2{font-size:20px;margin:0 0 4px}
+  h3{font-size:17px;margin:0 0 10px}
+  .lead{color:var(--sub);margin:0 0 16px}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .fact{border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .fact .k{color:var(--sub);font-size:13px}
+  .fact .v{font-size:18px;font-weight:800}
+  .steps{display:flex;list-style:none;padding:0;margin:0;gap:8px;flex-wrap:wrap}
+  .steps li{flex:1;min-width:180px;border:2px solid var(--line);border-radius:10px;padding:10px 14px;background:#fff}
+  .steps li .st{font-size:13px;font-weight:700;color:var(--sub)}
+  .steps li.done{border-color:var(--main);background:var(--main-pale)}
+  .steps li.done .st{color:var(--main-dark)}
+  .steps li.now{border-color:var(--main)}
+  label{font-weight:700}
+  .field{margin:12px 0}
+  .field label{display:block;margin-bottom:4px}
+  input,select,textarea{font:inherit;padding:8px 10px;border:1px solid #B8C0CC;border-radius:8px;background:#fff;color:var(--ink)}
+  select{min-width:240px}
+  textarea{width:100%;min-height:180px;font-family:ui-monospace,Menlo,monospace;font-size:14px}
+  .btn{display:inline-block;font:inherit;font-weight:700;border:0;border-radius:8px;padding:10px 20px;cursor:pointer}
+  .btn-main{background:var(--main);color:#fff}
+  .btn-main:hover{background:var(--main-dark)}
+  .btn-sub{background:#fff;color:var(--ink);border:1px solid #B8C0CC}
+  .btn-go{background:var(--red);color:#fff}
+  .btn-small{padding:4px 10px;font-size:13px}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;align-items:center}
+  .tbl-wrap{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  th,td{text-align:left;border-bottom:1px solid var(--line);padding:8px 8px;white-space:nowrap}
+  thead th{background:#F0F3F6;color:var(--sub);font-size:13px}
+  td.num,th.num{text-align:right}
+  tfoot td{font-weight:800;border-top:2px solid var(--ink)}
+  .edit input{width:100%;min-width:72px}
+  .edit input.brk{min-width:64px}
+  .msg{margin-top:12px;font-weight:700;color:var(--main-dark);white-space:pre-line}
+  .warn{margin:12px 0;padding:10px 14px;border-radius:8px;background:#FFF1F2;border:1px solid #F5B5BF;color:#B0172C;font-weight:700}
+  .note{font-size:13px;color:var(--sub)}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .hidden{display:none !important}
+  .done{text-align:center;padding:32px 24px}
+  .done .big{font-size:22px;font-weight:800;color:var(--red)}
+  .overlay{position:fixed;inset:0;background:rgba(20,26,33,.45);display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}
+  .dialog{background:#fff;border-radius:12px;max-width:460px;width:100%;padding:24px}
+  .dialog h3{font-size:18px}
+  details summary{cursor:pointer;font-weight:700;color:var(--main-dark)}
+  footer{text-align:center;color:var(--sub);font-size:13px;padding:24px 16px}
+  @media (max-width:720px){.facts{grid-template-columns:1fr}.card{padding:16px}select{min-width:0;width:100%}}
+</style>
+</head>
+<body>
+<div class="band">これは練習用のサイトです。本当の注文・予約・送信はされません（架空のお店・データです）</div>
+<header>
+  <div class="head-in">
+    <a class="to-search" href="../index.html">← みらい検索</a>
+    <div class="brand">
+      <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="8" fill="#0B7A75"/><text x="18" y="25" text-anchor="middle" font-size="19" font-weight="700" fill="#fff" font-family="Hiragino Sans,sans-serif">給</text></svg>
+      <h1>みらい給与<small>株式会社みらい商事　アルバイトの給与</small></h1>
+    </div>
+    <nav aria-label="画面の切り替え">
+      <a href="#home" data-page="home">ホーム</a>
+      <a href="#staff" data-page="staff">従業員</a>
+      <a href="#kintai" data-page="kintai">勤怠の入力</a>
+      <a href="#keisan" data-page="keisan">計算</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<!-- ホーム -->
+<section id="page-home" data-page="home">
+  <div class="card">
+    <h2>ホーム</h2>
+    <p class="lead">今回の締めの給与を、勤怠の入力 → 計算 → 確定 の順に進めます。</p>
+    <div class="facts">
+      <div class="fact"><div class="k">今回の締め</div><div class="v">2026年11月1日〜15日</div></div>
+      <div class="fact"><div class="k">支給日</div><div class="v">2026年11月25日</div></div>
+      <div class="fact"><div class="k">対象</div><div class="v">アルバイト 5人</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>進み具合</h3>
+    <ol class="steps" id="steps">
+      <li id="step-kintai"><div class="st" id="step-kintai-st">まだ</div><b>1. 勤怠の入力</b><div id="step-kintai-text" class="note"></div></li>
+      <li id="step-keisan"><div class="st" id="step-keisan-st">まだ</div><b>2. 計算</b><div id="step-keisan-text" class="note"></div></li>
+      <li id="step-kakutei"><div class="st" id="step-kakutei-st">まだ</div><b>3. 確定</b><div id="step-kakutei-text" class="note"></div></li>
+    </ol>
+    <div class="actions">
+      <a class="btn btn-main" href="#kintai" style="text-decoration:none">勤怠の入力へ進む</a>
+      <a class="btn btn-sub" href="#keisan" style="text-decoration:none">計算の画面へ</a>
+    </div>
+  </div>
+  <div class="card">
+    <h3>練習用の操作</h3>
+    <p class="note">入力した勤怠はこのブラウザの中にだけ残ります。最初の状態（勤怠が空）に戻すときは下のボタンを押してください。</p>
+    <div class="actions"><button type="button" class="btn btn-sub" id="resetBtn">最初の状態に戻す</button></div>
+    <div class="msg" id="resetMsg" role="status"></div>
+  </div>
+</section>
+
+<!-- 従業員 -->
+<section id="page-staff" data-page="staff" class="hidden">
+  <div class="card">
+    <h2>従業員</h2>
+    <p class="lead">登録されている従業員と時給です。</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>名前</th><th class="num">時給</th><th>働く場所</th><th>雇用の形</th><th>勤怠</th></tr></thead>
+        <tbody id="staffBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 勤怠の入力 -->
+<section id="page-kintai" data-page="kintai" class="hidden">
+  <div class="card">
+    <h2>勤怠の入力</h2>
+    <p class="lead">締め：2026年11月1日〜15日。従業員を選んで、1日ずつ入れてください（時刻は 09:00 の形、休憩は分）。</p>
+    <div class="field">
+      <label for="who">従業員</label>
+      <select id="who"></select>
+    </div>
+    <div class="tbl-wrap">
+      <table class="edit">
+        <thead><tr><th>日付</th><th>出勤</th><th>退勤</th><th>休憩（分）</th><th>操作</th></tr></thead>
+        <tbody id="editBody"></tbody>
+      </table>
+    </div>
+    <p class="note" id="editEmpty">この従業員の勤怠はまだありません。［行を追加する］で入れてください。</p>
+    <div class="actions"><button type="button" class="btn btn-sub" id="addRow">行を追加する</button></div>
+  </div>
+
+  <div class="card">
+    <h3>CSV を貼り付けて取り込む</h3>
+    <p class="note">列は「日付,名前,出勤,退勤,休憩（分）」です（1行目の見出しはあってもなくても大丈夫）。取り込んだ行は、今の勤怠に<strong>足されます</strong>（置き換えません）。</p>
+    <div class="field">
+      <label for="csvText">勤怠の CSV</label>
+      <textarea id="csvText" placeholder="日付,名前,出勤,退勤,休憩（分）"></textarea>
+    </div>
+    <div class="field">
+      <label for="csvFile">または CSV ファイルを選ぶ</label>
+      <input type="file" id="csvFile" accept=".csv,text/csv">
+    </div>
+    <div class="actions"><button type="button" class="btn btn-main" id="importBtn">貼り付けた CSV を取り込む</button></div>
+    <div class="msg" id="importMsg" role="status"></div>
+  </div>
+
+  <div class="card">
+    <h3>入力済みの勤怠（全員）</h3>
+    <p class="note" id="allCount"></p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th class="num">No.</th><th>日付</th><th>名前</th><th>出勤</th><th>退勤</th><th class="num">休憩（分）</th></tr></thead>
+        <tbody id="allBody"></tbody>
+      </table>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn btn-sub" id="downloadBtn">勤怠の CSV をダウンロード</button>
+      <a class="btn btn-main" href="#keisan" style="text-decoration:none">計算の画面へ進む</a>
+    </div>
+    <div class="msg" id="downloadMsg" role="status"></div>
+  </div>
+</section>
+
+<!-- 計算 -->
+<section id="page-keisan" data-page="keisan" class="hidden">
+  <div class="card">
+    <h2>計算</h2>
+    <p class="lead">締め：2026年11月1日〜15日／支給日：2026年11月25日。入力済みの勤怠から、人ごとの支給額を計算します。</p>
+    <p class="note">計算のしかた：働いた時間＝退勤−出勤−休憩（1分単位）。1日8時間を超えた分は時給の25%増し、22時〜翌5時の分はさらに25%増し。人ごとの合計で1円未満を切り捨て。交通費・保険料・税金はこの画面では扱いません。</p>
+    <div class="actions"><button type="button" class="btn btn-main" id="calcBtn">給与を計算する</button></div>
+    <div class="msg" id="calcMsg" role="status"></div>
+  </div>
+
+  <div class="card hidden" id="resultCard">
+    <h3>計算結果</h3>
+    <div id="warnBox"></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>名前</th><th class="num">時給</th><th class="num">出勤日数</th><th class="num">働いた時間</th><th class="num">うち残業</th><th class="num">うち深夜</th><th class="num">支給額</th></tr></thead>
+        <tbody id="resultBody"></tbody>
+        <tfoot><tr><td colspan="6">合計</td><td class="num" id="resultTotal"></td></tr></tfoot>
+      </table>
+    </div>
+    <details style="margin-top:14px">
+      <summary>日ごとの内訳を見る</summary>
+      <div class="tbl-wrap" style="margin-top:8px">
+        <table>
+          <thead><tr><th>名前</th><th>日付</th><th>出勤</th><th>退勤</th><th class="num">休憩（分）</th><th class="num">働いた時間</th><th class="num">うち残業</th><th class="num">うち深夜</th></tr></thead>
+          <tbody id="detailBody"></tbody>
+        </table>
+      </div>
+    </details>
+    <div class="actions">
+      <button type="button" class="btn btn-go" id="kakuteiBtn">給与を確定する</button>
+      <span class="note">確定すると、この締めの給与は変更できなくなります。</span>
+    </div>
+  </div>
+</section>
+
+<!-- 完了 -->
+<section id="page-done" data-page="done" class="hidden">
+  <div class="card done">
+    <p class="big">［確定する］が押されました</p>
+    <p>練習用のサイトなので、給与は確定・振込されていません。<br>本番では、このボタンは<strong>人が自分で押す</strong>所です。<br>AI には「確定の前で止まって」と頼みましょう。</p>
+    <div class="actions" style="justify-content:center"><a class="btn btn-sub" href="#home" style="text-decoration:none">ホームに戻る</a></div>
+  </div>
+</section>
+
+</main>
+
+<!-- 確認の窓 -->
+<div class="overlay hidden" id="confirmBox" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+  <div class="dialog">
+    <h3 id="confirmTitle">給与を確定しますか？</h3>
+    <p>2026年11月1日〜15日の締め（支給日 11月25日）の給与を確定します。<br><strong>確定すると変更できません。</strong></p>
+    <p>支給額の合計：<strong id="confirmTotal"></strong></p>
+    <div class="actions">
+      <button type="button" class="btn btn-sub" id="confirmCancel">やめる</button>
+      <button type="button" class="btn btn-go" id="confirmOk">確定する</button>
+    </div>
+  </div>
+</div>
+
+<footer>みらい給与（架空）｜ワークショップの練習用｜©2026 EXTRA Company Ltd.</footer>
+
+<script src="keisan.js"></script>
+<script>
+(function () {
+  'use strict';
+  var K = window.MiraiKeisan;
+  var $ = function (id) { return document.getElementById(id); };
+  var KEY = 'mirai-kyuyo-v1';
+
+  // 状態：rows（勤怠）・nextId・calcDone（計算済みか）・confirmed（確定ボタンが押されたか）
+  var state = load() || fresh();
+  function fresh() { return { rows: [], nextId: 1, calcDone: false, confirmed: false, who: K.EMPLOYEES[0].name }; }
+  function load() {
+    try {
+      var s = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (s && Array.isArray(s.rows)) return s;
+    } catch (e) {}
+    return null;
+  }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function esc(v) { return String(v == null ? '' : v).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function yen(n) { return n.toLocaleString('ja-JP') + '円'; }
+  function hm(min) { var h = Math.floor(min / 60), m = min % 60; return h + '時間' + (m < 10 ? '0' : '') + m + '分'; }
+
+  // 勤怠が変わったら、計算と確定をやり直しにする
+  function changed() {
+    state.calcDone = false; state.confirmed = false;
+    $('resultCard').classList.add('hidden');
+    $('calcMsg').textContent = state.rows.length ? '勤怠が変わりました。もう一度［給与を計算する］を押してください。' : '';
+    save(); renderAll(); renderSteps();
+  }
+
+  // ---- 従業員 ----
+  function renderStaff() {
+    $('staffBody').innerHTML = K.EMPLOYEES.map(function (e) {
+      return '<tr id="staff-' + e.id + '"><td>' + esc(e.name) + '</td><td class="num">' + yen(e.rate) + '</td><td>' + esc(e.place) + '</td><td>アルバイト（時給）</td><td><a href="#kintai=' + e.id + '">この人の勤怠を入力する</a></td></tr>';
+    }).join('');
+  }
+
+  // ---- 勤怠の入力 ----
+  function countOf(name) { return state.rows.filter(function (r) { return r.name === name; }).length; }
+  function renderWho() {
+    var sel = $('who');
+    sel.innerHTML = K.EMPLOYEES.map(function (e) {
+      return '<option value="' + esc(e.name) + '">' + esc(e.name) + '（' + countOf(e.name) + '行）</option>';
+    }).join('');
+    sel.value = state.who;
+  }
+  function renderEdit() {
+    var mine = state.rows.filter(function (r) { return r.name === state.who; });
+    $('editEmpty').classList.toggle('hidden', mine.length > 0);
+    $('editBody').innerHTML = mine.map(function (r, i) {
+      var n = (i + 1) + '行目';
+      var id = 'r' + r.id;
+      return '<tr data-id="' + r.id + '">' +
+        '<td><label class="sr" for="' + id + '-date">' + n + 'の日付</label><input id="' + id + '-date" data-f="date" value="' + esc(r.date) + '" placeholder="11/1"></td>' +
+        '<td><label class="sr" for="' + id + '-in">' + n + 'の出勤</label><input id="' + id + '-in" data-f="in" value="' + esc(r.in) + '" placeholder="09:00"></td>' +
+        '<td><label class="sr" for="' + id + '-out">' + n + 'の退勤</label><input id="' + id + '-out" data-f="out" value="' + esc(r.out) + '" placeholder="18:00"></td>' +
+        '<td><label class="sr" for="' + id + '-brk">' + n + 'の休憩（分）</label><input id="' + id + '-brk" class="brk" data-f="brk" inputmode="numeric" value="' + esc(r.brk) + '" placeholder="60"></td>' +
+        '<td><button type="button" class="btn btn-sub btn-small" data-del="' + r.id + '">この行を削除</button></td></tr>';
+    }).join('');
+  }
+  function renderAll() {
+    $('allCount').textContent = '全部で ' + state.rows.length + ' 行';
+    $('allBody').innerHTML = state.rows.length ? state.rows.map(function (r, i) {
+      return '<tr><td class="num">' + (i + 1) + '</td><td>' + esc(r.date) + '</td><td>' + esc(r.name) + '</td><td>' + esc(r.in) + '</td><td>' + esc(r.out) + '</td><td class="num">' + esc(r.brk) + '</td></tr>';
+    }).join('') : '<tr><td colspan="6" class="note">まだ勤怠がありません</td></tr>';
+    var keep = $('who').value; renderWho(); if (keep) $('who').value = keep;
+  }
+
+  $('who').addEventListener('change', function () { state.who = this.value; save(); renderEdit(); });
+  $('addRow').addEventListener('click', function () {
+    var r = { id: state.nextId++, date: '', name: state.who, in: '', out: '', brk: '' };
+    state.rows.push(r);
+    changed(); renderEdit();
+    var el = $('r' + r.id + '-date'); if (el) el.focus();
+  });
+  $('editBody').addEventListener('input', function (ev) {
+    var t = ev.target, f = t.getAttribute('data-f'); if (!f) return;
+    var id = +t.closest('tr').getAttribute('data-id');
+    state.rows.forEach(function (r) { if (r.id === id) r[f] = t.value; });
+    changed();
+  });
+  $('editBody').addEventListener('click', function (ev) {
+    var id = ev.target.getAttribute && ev.target.getAttribute('data-del'); if (!id) return;
+    state.rows = state.rows.filter(function (r) { return r.id !== +id; });
+    changed(); renderEdit();
+  });
+
+  function importText(text) {
+    var p = K.parseCsv(text);
+    if (!p.rows.length) { $('importMsg').textContent = '取り込める行がありませんでした。列が「日付,名前,出勤,退勤,休憩（分）」になっているか見てください。'; return; }
+    p.rows.forEach(function (r) { r.id = state.nextId++; state.rows.push(r); });
+    var names = {}; K.EMPLOYEES.forEach(function (e) { names[e.name] = 1; });
+    var unknown = p.rows.filter(function (r) { return !names[r.name]; }).length;
+    $('importMsg').textContent = p.rows.length + '行を取り込みました（勤怠は全部で ' + state.rows.length + ' 行）。' +
+      (p.bad ? '\n読めなかった行：' + p.bad + '行' : '') +
+      (unknown ? '\n従業員にない名前の行：' + unknown + '行（計算には入りません）' : '');
+    changed(); renderEdit();
+  }
+  $('importBtn').addEventListener('click', function () { importText($('csvText').value); });
+  $('csvFile').addEventListener('change', function () {
+    var f = this.files && this.files[0]; if (!f) return;
+    var rd = new FileReader();
+    rd.onload = function () { $('csvText').value = String(rd.result).replace(/^﻿/, ''); $('importMsg').textContent = 'ファイルを読み込みました。［貼り付けた CSV を取り込む］を押すと取り込みます。'; };
+    rd.readAsText(f, 'utf-8');
+    this.value = '';
+  });
+
+  $('downloadBtn').addEventListener('click', function () {
+    if (!state.rows.length) { $('downloadMsg').textContent = 'まだ勤怠がありません。'; return; }
+    var blob = new Blob([K.toCsv(state.rows)], { type: 'text/csv;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = '勤怠_2026年11月前半_みらい給与.csv';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    $('downloadMsg').textContent = '「勤怠_2026年11月前半_みらい給与.csv」をダウンロードしました（' + state.rows.length + '行）。';
+  });
+
+  // ---- 計算 ----
+  var last = null;
+  function runCalc() {
+    last = K.calcPayroll(state.rows);
+    var warns = [];
+    if (last.skippedNoOut.length) warns.push('退勤が空の行があります（計算から外しました）');
+    if (last.skippedBad.length) warns.push('時刻が読めない行があります（計算から外しました）');
+    $('warnBox').innerHTML = warns.map(function (w) { return '<div class="warn" role="alert">' + esc(w) + '</div>'; }).join('');
+    $('resultBody').innerHTML = last.people.map(function (p) {
+      return '<tr><td>' + esc(p.name) + '</td><td class="num">' + yen(p.rate) + '</td><td class="num">' + p.days + '日</td><td class="num">' + hm(p.worked) +
+        '</td><td class="num">' + hm(p.ot) + '</td><td class="num">' + hm(p.night) + '</td><td class="num"><b>' + yen(p.pay) + '</b></td></tr>';
+    }).join('');
+    $('resultTotal').textContent = yen(last.total);
+    var det = [];
+    last.people.forEach(function (p) {
+      p.detail.forEach(function (d) {
+        det.push('<tr><td>' + esc(p.name) + '</td><td>' + esc(d.date) + '</td><td>' + esc(d.in) + '</td><td>' + esc(d.out) + '</td><td class="num">' + esc(d.brk === '' ? 0 : d.brk) +
+          '</td><td class="num">' + hm(d.worked) + '</td><td class="num">' + hm(d.ot) + '</td><td class="num">' + hm(d.night) + '</td></tr>');
+      });
+    });
+    $('detailBody').innerHTML = det.join('');
+    $('resultCard').classList.remove('hidden');
+  }
+  $('calcBtn').addEventListener('click', function () {
+    if (!state.rows.length) { $('calcMsg').textContent = 'まだ勤怠がありません。先に［勤怠の入力］で入れてください。'; return; }
+    runCalc();
+    state.calcDone = true; save();
+    $('calcMsg').textContent = '計算しました（勤怠 ' + state.rows.length + ' 行）。';
+    renderSteps();
+  });
+
+  // ---- 確定 ----
+  $('kakuteiBtn').addEventListener('click', function () {
+    if (!last) return;
+    $('confirmTotal').textContent = yen(last.total);
+    $('confirmBox').classList.remove('hidden');
+    $('confirmCancel').focus();
+  });
+  $('confirmCancel').addEventListener('click', function () { $('confirmBox').classList.add('hidden'); });
+  $('confirmOk').addEventListener('click', function () {
+    $('confirmBox').classList.add('hidden');
+    state.confirmed = true; save(); renderSteps();
+    location.hash = '#done';
+  });
+
+  // ---- ホームの進み具合 ----
+  function setStep(key, cls, st, text) {
+    var li = $('step-' + key); li.className = cls;
+    $('step-' + key + '-st').textContent = st; $('step-' + key + '-text').textContent = text;
+  }
+  function renderSteps() {
+    var n = state.rows.length;
+    setStep('kintai', n ? 'done' : 'now', n ? '入力済み' : 'これから', n ? '勤怠 ' + n + ' 行' : 'まだ勤怠がありません');
+    setStep('keisan', state.calcDone ? 'done' : (n ? 'now' : ''), state.calcDone ? '計算済み' : 'まだ', state.calcDone ? '［計算］の画面で結果を見られます' : '');
+    setStep('kakutei', state.confirmed ? 'done' : (state.calcDone ? 'now' : ''), state.confirmed ? '確定ボタンが押されました（練習）' : 'まだ', state.confirmed ? '練習用なので本当は確定していません' : '');
+  }
+
+  // ---- 最初の状態に戻す ----
+  $('resetBtn').addEventListener('click', function () {
+    state = fresh(); last = null;
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    $('csvText').value = ''; $('importMsg').textContent = ''; $('calcMsg').textContent = ''; $('downloadMsg').textContent = '';
+    $('resultCard').classList.add('hidden');
+    renderWho(); renderEdit(); renderAll(); renderSteps();
+    $('resetMsg').textContent = '最初の状態に戻しました（勤怠は空です）。';
+  });
+
+  // ---- 画面の切り替え（#hash） ----
+  function show() {
+    // #kintai=e2（その人の勤怠の入力）・#staff=e3（その人の行を目立たせる）のような深いリンクも開ける
+    var raw = (location.hash || '#home').slice(1);
+    var page = raw.split('=')[0], arg = raw.indexOf('=') >= 0 ? decodeURIComponent(raw.slice(raw.indexOf('=') + 1)) : '';
+    if (!document.getElementById('page-' + page)) page = 'home';
+    var emp = K.EMPLOYEES.filter(function (e) { return e.id === arg || e.name === arg; })[0];
+    if (page === 'kintai' && emp && state.who !== emp.name) { state.who = emp.name; save(); renderWho(); renderEdit(); }
+    Array.prototype.forEach.call(document.querySelectorAll('#staffBody tr'), function (tr) {
+      tr.classList.toggle('pick', page === 'staff' && !!emp && tr.id === 'staff-' + emp.id);
+    });
+    if (page === 'done' && !state.confirmed) page = 'home';
+    Array.prototype.forEach.call(document.querySelectorAll('main > section'), function (s) {
+      s.classList.toggle('hidden', s.getAttribute('data-page') !== page);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('nav a'), function (a) {
+      a.classList.toggle('on', a.getAttribute('data-page') === page);
+      if (a.getAttribute('data-page') === page) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    if (page === 'keisan' && state.calcDone && state.rows.length) runCalc();
+    if (page !== 'home') $('resetMsg').textContent = '';
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', show);
+
+  renderStaff(); renderWho(); renderEdit(); renderAll(); renderSteps(); show();
+})();
+</script>
+</body>
+</html>

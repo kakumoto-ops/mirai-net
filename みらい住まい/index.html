@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>みらい住まい 社宅・賃貸のお部屋さがし（練習用）</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="band">これは練習用のサイトです。本当の注文・予約・送信はされません（架空のお店・データです）</div>
+<header class="site">
+  <div class="in">
+    <a class="back-search" href="../index.html">← みらい検索</a>
+    <svg class="mark" viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" rx="7" fill="#5B3E96"/><path d="M8 17 L17 9 L26 17 V26 H8 Z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/><rect x="14.5" y="19" width="5" height="7" fill="#fff"/></svg>
+    <p class="site-name"><a href="#/" style="color:inherit;text-decoration:none">みらい住まい</a><small>社宅・賃貸のお部屋さがし（みらい線沿線）</small></p>
+    <span class="today">今日：<span id="today"></span>　｜　掲載 <span id="total"></span>件</span>
+  </div>
+</header>
+<nav class="crumb" id="crumb" aria-label="現在の場所"></nav>
+
+<main>
+  <!-- 検索と一覧 -->
+  <section id="view-list">
+    <div class="layout">
+      <form class="card search" id="search" aria-label="物件をさがす条件">
+        <h2>条件でさがす</h2>
+        <fieldset>
+          <legend>駅（みらい線・複数選べます）</legend>
+          <div class="opt" id="opt-st"></div>
+        </fieldset>
+        <fieldset>
+          <legend><label for="rent">家賃の上限</label></legend>
+          <select id="rent"></select>
+          <div class="opt" style="margin-top:6px"><label for="inc"><input type="checkbox" id="inc"> 管理費・共益費を含む</label></div>
+          <p class="note">チェックを入れると「家賃＋管理費」で上限と比べます。</p>
+        </fieldset>
+        <fieldset>
+          <legend>間取り（複数選べます）</legend>
+          <div class="opt" id="opt-mad"></div>
+        </fieldset>
+        <fieldset>
+          <legend><label for="area">専有面積</label></legend>
+          <select id="area"></select>
+        </fieldset>
+        <fieldset>
+          <legend><label for="walk">駅から徒歩</label></legend>
+          <select id="walk"></select>
+        </fieldset>
+        <fieldset>
+          <legend><label for="age">築年数</label></legend>
+          <select id="age"></select>
+        </fieldset>
+        <fieldset>
+          <legend>こだわり条件</legend>
+          <div class="opt" id="opt-f"></div>
+        </fieldset>
+        <div class="btns">
+          <button type="submit" class="btn btn-main">この条件で検索する</button>
+          <button type="button" class="btn btn-sub" id="clear">条件をすべて外す</button>
+        </div>
+      </form>
+
+      <div>
+        <div class="list-head">
+          <p class="count" style="margin:0">該当 <b id="count">0</b> 件</p>
+          <div class="sort"><label for="sort">並べ替え</label>
+            <select id="sort">
+              <option value="new">新着順</option>
+              <option value="cheap">家賃が安い順</option>
+              <option value="near">駅から近い順</option>
+              <option value="wide">広い順</option>
+            </select>
+          </div>
+        </div>
+        <p class="cond-now" id="cond-now"></p>
+        <div id="results"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 物件の詳細 -->
+  <section id="view-room" class="hidden"></section>
+
+  <!-- 問い合わせフォーム -->
+  <section id="view-inquiry" class="hidden">
+    <div class="card">
+      <h2>この物件に問い合わせる</h2>
+      <div class="room-mini" id="inq-room"></div>
+      <form id="inq-form" novalidate>
+        <div class="form-row">
+          <label for="f-name">お名前<span class="req">必須</span></label>
+          <input type="text" id="f-name" autocomplete="off" placeholder="例：みらい 太郎">
+        </div>
+        <div class="form-row">
+          <label for="f-company">会社名・部署<span class="opt-mark">任意</span></label>
+          <input type="text" id="f-company" autocomplete="off" placeholder="例：株式会社みらい商事 総務部">
+          <p class="note" style="font-size:12px;color:#5B6370;margin:2px 0 0">法人契約（社宅）でのご相談の場合はご記入ください。</p>
+        </div>
+        <div class="form-row">
+          <label for="f-mail">メールアドレス<span class="req">必須</span></label>
+          <input type="email" id="f-mail" autocomplete="off" placeholder="例：taro@example.com">
+        </div>
+        <div class="form-row">
+          <label for="f-tel">電話番号<span class="opt-mark">任意</span></label>
+          <input type="tel" id="f-tel" autocomplete="off" placeholder="例：000-0000-0000">
+        </div>
+        <div class="form-row">
+          <label for="f-movein">希望の入居時期<span class="req">必須</span></label>
+          <select id="f-movein">
+            <option value="">選んでください</option>
+            <option>すぐにでも</option>
+            <option>2027年1月</option>
+            <option>2027年2月</option>
+            <option>2027年3月</option>
+            <option>2027年4月以降</option>
+            <option>まだ決まっていない</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <span class="lbl">内見の希望日<span class="opt-mark">任意</span></span>
+          <div class="two">
+            <div><label for="f-visit" style="font-size:13px;color:#5B6370">日にち</label><select id="f-visit"></select></div>
+            <div><label for="f-time" style="font-size:13px;color:#5B6370">時間帯</label>
+              <select id="f-time">
+                <option value="">選んでください</option>
+                <option>午前（10時〜12時）</option>
+                <option>午後（13時〜17時）</option>
+                <option>夕方（17時〜19時）</option>
+              </select></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="f-q">質問・ご要望<span class="opt-mark">任意</span></label>
+          <textarea id="f-q" placeholder="例：法人契約はできますか？"></textarea>
+        </div>
+        <p class="err" id="inq-err" role="alert"></p>
+        <div class="actions">
+          <button type="button" class="btn btn-sub" id="inq-back">物件の詳細に戻る</button>
+          <button type="submit" class="btn btn-main">入力内容を確認する</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- 確認 -->
+  <section id="view-confirm" class="hidden">
+    <div class="card">
+      <h2>入力内容の確認</h2>
+      <p>まだ送信されていません。内容を確かめて、よければ［送信する］を押してください。</p>
+      <div class="room-mini" id="cf-room"></div>
+      <table id="cf-table"></table>
+      <p style="font-size:13px;color:#5B6370">送信すると、取り扱いの不動産会社に問い合わせが届きます（練習用のサイトなので、実際にはどこにも届きません）。</p>
+      <div class="actions">
+        <button type="button" class="btn btn-sub" id="cf-back">入力画面に戻る</button>
+        <button type="button" class="btn btn-send" id="cf-send">送信する</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 完了 -->
+  <section id="view-done" class="hidden">
+    <div class="card done">
+      <p class="big">問い合わせの送信が完了しました（練習）</p>
+      <p>練習用のサイトなので、問い合わせは送信されていません。不動産会社にもどこにも届いていません。</p>
+      <p>本番では、このボタンは人が自分で押す所です。AI には『送信の前で止まって』と頼みましょう。</p>
+      <p id="done-room" style="color:#5B6370;font-size:14px"></p>
+      <div class="actions" style="justify-content:center">
+        <a class="btn btn-main" href="#/">物件さがしのトップへ</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="reset"><button type="button" class="btn btn-sub btn-small" id="reset">最初の状態に戻す</button></div>
+  みらい住まい（架空）｜ワークショップの練習用｜©2026 EXTRA Company Ltd.
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

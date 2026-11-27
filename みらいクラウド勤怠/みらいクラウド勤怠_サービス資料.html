@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<title>みらいクラウド勤怠 サービス資料（練習用・架空）</title>
+<!-- この HTML を Chrome ヘッドレスの --print-to-pdf で PDF にしたものが「みらいクラウド勤怠_サービス資料.pdf」。料金は js/data.js（紹介ページと同じデータ）から作る。 -->
+<style>
+  @page{size:A4;margin:0}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;color:#1F2328;line-height:1.7;font-size:11pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:210mm;height:297mm;padding:18mm 18mm 16mm;position:relative;page-break-after:always;overflow:hidden}
+  .page:last-child{page-break-after:auto}
+  .practice{position:absolute;top:0;left:0;right:0;background:#E9233E;color:#fff;font-weight:700;font-size:9pt;text-align:center;padding:2mm}
+  .foot{position:absolute;left:18mm;right:18mm;bottom:9mm;display:flex;justify-content:space-between;font-size:8pt;color:#5B6370;border-top:1px solid #D9DEE5;padding-top:2mm}
+  h1{font-size:28pt;line-height:1.35;margin:0}
+  h2{font-size:17pt;margin:4mm 0 4mm;padding-left:4mm;border-left:2.2mm solid #0F7B6C}
+  h3{font-size:12.5pt;margin:0 0 1mm}
+  p{margin:0 0 3mm}
+  .muted{color:#5B6370}
+  .small{font-size:9pt}
+  /* 表紙 */
+  .cover{background:#E6F3F0}
+  .cover .box{position:absolute;top:70mm;left:18mm;right:18mm}
+  .cover .kicker{color:#0B5E53;font-weight:700;font-size:13pt;margin-bottom:4mm}
+  .cover .sub{font-size:14pt;margin-top:6mm}
+  .cover .meta{position:absolute;bottom:34mm;left:18mm;right:18mm;font-size:11pt}
+  .cover .meta b{font-size:13pt}
+  .logo{display:flex;align-items:center;gap:4mm;margin-bottom:12mm}
+  .logo b{font-size:16pt}
+  /* できること */
+  .feat{display:grid;grid-template-columns:12mm 1fr;gap:2mm 4mm;margin-bottom:4mm;align-items:start}
+  .feat .no{width:10mm;height:10mm;border-radius:50%;background:#0F7B6C;color:#fff;font-weight:700;text-align:center;line-height:10mm}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-top:3mm}
+  .stat{background:#F5F8F7;border-radius:3mm;padding:4mm;text-align:center}
+  .stat b{display:block;font-size:18pt;color:#0B5E53}
+  /* 表 */
+  table{width:100%;border-collapse:collapse;font-size:9.5pt;margin-bottom:3.5mm}
+  #pdf-price th:first-child,#pdf-feature th:first-child{width:40%}
+  caption{text-align:left;font-weight:700;padding-bottom:1.5mm}
+  th,td{border:1px solid #C9D1D9;padding:1.3mm 2mm;text-align:center}
+  thead th{background:#E6F3F0}
+  tbody th{text-align:left;font-weight:400;background:#FAFBFC}
+  .notes{font-size:9pt;color:#333;margin:0 0 4mm;padding:0;list-style:none}
+  .notes li{margin-bottom:1mm}
+  .example{border:1px solid #0F7B6C;border-radius:3mm;padding:3mm 4mm;font-size:10pt}
+  .example b{color:#0B5E53}
+  /* 導入の流れ */
+  .flow{list-style:none;margin:0 0 6mm;padding:0}
+  .flow li{display:grid;grid-template-columns:24mm 1fr;gap:4mm;padding:3mm 0;border-bottom:1px dashed #C9D1D9}
+  .flow .st{background:#0F7B6C;color:#fff;font-weight:700;border-radius:2mm;text-align:center;padding:1mm 0;height:fit-content}
+  .contact{background:#F5F8F7;border-radius:3mm;padding:5mm 6mm}
+  .contact table{margin:0}
+  .contact th{width:34mm;background:transparent}
+  .contact td{text-align:left}
+</style>
+</head>
+<body>
+
+<!-- 1ページ目：表紙 -->
+<section class="page cover">
+  <div class="practice">練習用の資料です（架空のサービス・会社・連絡先です）</div>
+  <div class="box">
+    <div class="logo">
+      <svg width="46" height="46" viewBox="0 0 38 38" aria-hidden="true">
+        <rect width="38" height="38" rx="9" fill="#0F7B6C"/>
+        <circle cx="19" cy="19" r="10.5" fill="none" stroke="#fff" stroke-width="2.6"/>
+        <path d="M19 12.5V19l4.5 3" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+      </svg>
+      <b>みらいクラウド勤怠</b>
+    </div>
+    <div class="kicker">サービス資料</div>
+    <h1>勤怠の手間を、<br>ひとつの画面に。</h1>
+    <p class="sub">打刻・シフト・残業の見える化・給与ソフトへの書き出し・有給休暇の管理</p>
+  </div>
+  <div class="meta">
+    <b>みらいクラウド株式会社（架空）</b><br>
+    2026年12月版　／　料金はすべて税抜で表示しています
+  </div>
+  <div class="foot"><span>みらいクラウド勤怠（架空）｜ワークショップの練習用｜©2026 EXTRA Company Ltd.</span><span>1 / 4</span></div>
+</section>
+
+<!-- 2ページ目：サービスの概要 -->
+<section class="page">
+  <div class="practice">練習用の資料です（架空のサービス・会社・連絡先です）</div>
+  <h2 style="margin-top:6mm">みらいクラウド勤怠とは</h2>
+  <p>パソコン・スマホ・ICカードで打刻した勤怠を、クラウドでまとめて管理するサービスです。月末の集計や給与ソフトへの受け渡しまで、総務の手作業を減らします。</p>
+  <h2 style="margin-top:8mm">できること（5つ）</h2>
+  <div id="pdf-features"></div>
+  <h2 style="margin-top:8mm">数字で見るみらいクラウド勤怠</h2>
+  <div class="stats">
+    <div class="stat"><b>1,200社</b>導入している会社の数</div>
+    <div class="stat"><b>48,000人</b>毎月使っている人の数</div>
+    <div class="stat"><b>98%</b>続けて使っている会社の割合</div>
+  </div>
+  <p class="small muted" style="margin-top:3mm">※数字はすべて練習用につくった架空の数字です（2026年12月1日時点という設定）。</p>
+  <div class="foot"><span>みらいクラウド勤怠（架空）｜ワークショップの練習用｜©2026 EXTRA Company Ltd.</span><span>2 / 4</span></div>
+</section>
+
+<!-- 3ページ目：プランと料金 -->
+<section class="page">
+  <div class="practice">練習用の資料です（架空のサービス・会社・連絡先です）</div>
+  <h2 style="margin-top:6mm">プランと料金</h2>
+  <table id="pdf-price">
+    <caption>料金（表示はすべて税抜）</caption>
+    <thead><tr><th>項目</th><th>ライト</th><th>スタンダード</th><th>プロ</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <table id="pdf-feature">
+    <caption>使える機能（○＝使える　×＝使えない）</caption>
+    <thead><tr><th>機能</th><th>ライト</th><th>スタンダード</th><th>プロ</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <ul class="notes" id="pdf-notes"></ul>
+  <div class="example" id="pdf-example"></div>
+  <div class="foot"><span>みらいクラウド勤怠（架空）｜ワークショップの練習用｜©2026 EXTRA Company Ltd.</span><span>3 / 4</span></div>
+</section>
+
+<!-- 4ページ目：導入の流れとお問い合わせ -->
+<section class="page">
+  <div class="practice">練習用の資料です（架空のサービス・会社・連絡先です）</div>
+  <h2 style="margin-top:6mm">導入の流れ</h2>
+  <p>資料請求から使い始めまで、目安は<b>約1か月</b>です。</p>
+  <ol class="flow">
+    <li><span class="st">1 資料請求</span><span>この資料をご覧いただき、気になる点をお知らせください。</span></li>
+    <li><span class="st">2 ご説明</span><span>オンラインで30分ほど、画面をお見せしながらご説明します。</span></li>
+    <li><span class="st">3 無料お試し</span><span>ライトは14日間、スタンダード・プロは30日間、無料でお試しいただけます。お試しのあと、お申し込みをしない限り料金はかかりません。</span></li>
+    <li><span class="st">4 お申し込み</span><span>プランとお支払い方法（月払い／年払い）を決めてお申し込み。社員の登録と初期設定を行います（プロは担当者がお手伝いします）。</span></li>
+    <li><span class="st">5 使い始め</span><span>毎月1日から使い始められます。最初の月末の締めまで、お問い合わせ窓口でお手伝いします。</span></li>
+  </ol>
+  <h2>お問い合わせ先</h2>
+  <div class="contact">
+    <table>
+      <tbody>
+        <tr><th>会社名</th><td>みらいクラウド株式会社（架空）　みらいクラウド勤怠 お客さま窓口</td></tr>
+        <tr><th>メール</th><td>support@example.com（練習用の架空のアドレスです）</td></tr>
+        <tr><th>電話</th><td>00-0000-0000（架空の番号です）</td></tr>
+        <tr><th>受付時間</th><td>平日 9:00〜18:00（土日・祝日・年末年始は休み）</td></tr>
+        <tr><th>所在地</th><td>東京都みらい区みらい町1-2-3（架空の住所です）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted" style="margin-top:4mm">この資料は、ワークショップ「ChatGPT Work に仕事を任せる」の練習用につくった架空の資料です。実在の会社・サービスとは関係ありません。</p>
+  <div class="foot"><span>みらいクラウド勤怠（架空）｜ワークショップの練習用｜©2026 EXTRA Company Ltd.</span><span>4 / 4</span></div>
+</section>
+
+<script src="js/data.js"></script>
+<script>
+(function () {
+  var M = window.MIRAI, $ = function (id) { return document.getElementById(id); };
+  $("pdf-features").innerHTML = M.dokodemo.map(function (f, i) {
+    return '<div class="feat"><span class="no">' + (i + 1) + '</span><div><h3>' + f.t + '</h3><p>' + f.d + '</p></div></div>';
+  }).join("");
+  var rows = [
+    ["1人あたり月額", function (p) { return M.yen(p.price); }],
+    ["最低利用人数", function (p) { return p.min + "人分から"; }],
+    ["初期費用（月払いの場合）", function (p) { return M.yen(p.init); }],
+    ["初期費用（年払いの場合）", function () { return "無料"; }],
+    ["無料お試し", function (p) { return p.trial + "日間"; }]
+  ];
+  $("pdf-price").tBodies[0].innerHTML = rows.map(function (r) {
+    return '<tr><th>' + r[0] + '</th>' + M.plans.map(function (p) { return '<td>' + r[1](p) + '</td>'; }).join("") + '</tr>';
+  }).join("");
+  $("pdf-feature").tBodies[0].innerHTML = M.features.map(function (f) {
+    return '<tr><th>' + f[0] + '</th><td>' + f[1] + '</td><td>' + f[2] + '</td><td>' + f[3] + '</td></tr>';
+  }).join("");
+  $("pdf-notes").innerHTML = M.notes.map(function (n) { return '<li>※' + n + '</li>'; }).join("");
+  // 計算の例：ライト・8人・月払い（最低10人分・初期費用がかかる）
+  var L = M.plans[0], n = 8, billed = Math.max(n, L.min), month = L.price * billed;
+  $("pdf-example").innerHTML =
+    '<b>計算の例</b>　ライト・ご利用 ' + n + '人・月払いの場合<br>' +
+    '月額：' + L.price + '円 × ' + billed + '人分（最低' + L.min + '人分）＝ ' + M.yen(month) + '（税抜）→ 税込 ' + M.yen(Math.round(month * 1.1)) + '<br>' +
+    '初期費用（月払いなのでかかります）：' + M.yen(L.init) + '（税抜）→ 税込 ' + M.yen(Math.round(L.init * 1.1));
+})();
+</script>
+</body>
+</html>

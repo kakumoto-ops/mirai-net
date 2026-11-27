@@ -1,0 +1,153 @@
+/* みらいクラウド勤怠（架空）— サイトの色はみどり系 #0F7B6C を1つだけ使う */
+:root{
+  --ink:#1F2328; --sub:#5B6370; --line:#D9DEE5; --bg:#F5F8F7;
+  --main:#0F7B6C; --main-dark:#0B5E53; --main-soft:#E6F3F0;
+  --red:#D92D3A;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;color:var(--ink);background:#fff;line-height:1.75;font-size:16px}
+a{color:var(--main-dark)}
+.band{background:#E9233E;color:#fff;text-align:center;font-weight:700;padding:6px 12px;font-size:14px}
+
+/* ヘッダー */
+.site-head{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.site-head .inner{max-width:1080px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.brand svg{flex:none}
+.brand b{font-size:19px;letter-spacing:.02em}
+.brand small{display:block;font-size:11px;color:var(--sub);font-weight:400;line-height:1.2}
+.gnav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+.gnav a{padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--ink);font-weight:700;font-size:15px}
+.gnav a:hover{background:var(--main-soft)}
+.gnav a.on{color:var(--main-dark);background:var(--main-soft)}
+.gnav a.cta{background:var(--main);color:#fff}
+.gnav a.cta:hover{background:var(--main-dark)}
+
+main{max-width:1080px;margin:0 auto;padding:0 16px 32px}
+.view{display:none}
+.view.on{display:block}
+h2{font-size:24px;margin:40px 0 8px}
+h3{font-size:18px;margin:0 0 6px}
+.lead{color:var(--sub);margin:0 0 20px}
+.crumb{font-size:13px;color:var(--sub);margin:16px 0 0}
+
+/* トップの見出し */
+.hero{background:var(--main-soft);border-radius:16px;margin-top:24px;padding:40px 32px;display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:center}
+.hero h1{font-size:32px;line-height:1.4;margin:0 0 12px}
+.hero p{margin:0 0 20px}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero svg{width:100%;height:auto}
+.news{border:1px solid var(--line);border-radius:10px;padding:10px 16px;margin-top:16px;font-size:14px}
+.news b{color:var(--main-dark);margin-right:8px}
+
+/* みらい検索へ戻るリンク */
+.to-search{font-size:13px;font-weight:700;text-decoration:none;color:var(--sub);border:1px solid var(--line);border-radius:999px;padding:4px 12px;white-space:nowrap}
+.to-search:hover{background:#F2F4F7;color:var(--ink)}
+
+/* ボタン */
+.btn{display:inline-block;font:inherit;font-weight:700;border:0;border-radius:8px;padding:12px 24px;cursor:pointer;text-decoration:none;text-align:center}
+.btn-main{background:var(--main);color:#fff}
+.btn-main:hover{background:var(--main-dark)}
+.btn-sub{background:#fff;color:var(--ink);border:1px solid #B8C0CC}
+.btn-sub:hover{background:#F2F4F7}
+.btn-go{background:var(--red);color:#fff}
+.btn-small{padding:8px 16px;font-size:14px}
+
+/* できること */
+.features{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.feature{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff}
+.feature .no{display:inline-block;width:28px;height:28px;border-radius:50%;background:var(--main);color:#fff;text-align:center;line-height:28px;font-weight:700;font-size:14px;margin-bottom:6px}
+.feature p{margin:0;font-size:14px;color:var(--sub)}
+
+/* 数字 */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat{background:var(--bg);border-radius:12px;padding:20px;text-align:center}
+.stat .num{font-size:30px;font-weight:800;color:var(--main-dark)}
+.stat .what{font-size:14px;color:var(--sub)}
+.fake-note{font-size:13px;color:var(--sub);margin-top:8px}
+
+/* よくある質問 */
+.faq{border-top:1px solid var(--line)}
+.faq .qa{border-bottom:1px solid var(--line);padding:14px 4px}
+.faq .q{font-weight:700;margin:0}
+.faq .q::before{content:"Q. ";color:var(--main)}
+.faq .a{margin:4px 0 0;color:#333}
+.faq .a::before{content:"A. ";font-weight:700;color:var(--sub)}
+
+/* 料金 */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+.plan{border:1px solid var(--line);border-radius:14px;padding:20px;position:relative;background:#fff}
+.plan.rec{border:2px solid var(--main)}
+.plan .tag{position:absolute;top:-12px;left:16px;background:var(--main);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px}
+.plan h3{font-size:20px}
+.plan .for{font-size:14px;color:var(--sub);min-height:3em;margin:0 0 8px}
+.plan .price{font-size:14px;margin:0}
+.plan .price b{font-size:34px;color:var(--main-dark);margin:0 2px}
+.plan .tax{font-size:12px;color:var(--sub)}
+.plan dl{margin:12px 0 0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14px}
+.plan dt{color:var(--sub)}
+.plan dd{margin:0;font-weight:700}
+.tbl-wrap{overflow-x:auto;margin-top:24px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+caption{text-align:left;font-weight:700;padding:0 0 8px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:center}
+thead th{background:var(--main-soft)}
+tbody th{text-align:left;font-weight:400;background:#FAFBFC}
+.notes{font-size:13px;color:var(--sub);margin:12px 0 0;padding-left:0;list-style:none}
+.notes li{margin:2px 0}
+
+/* 1つのプランのくわしい内容 */
+.plan.focus{box-shadow:0 0 0 4px rgba(15,123,108,.25)}
+.plan-link{margin:12px 0 0;font-size:14px}
+.plan-detail{border:2px solid var(--main);border-radius:14px;padding:20px;margin-top:20px;background:#fff}
+.plan-detail h3{font-size:20px}
+.plan-detail .for{color:var(--sub);margin:0 0 10px}
+.plan-detail table{max-width:640px}
+
+/* フォーム */
+.form-card{border:1px solid var(--line);border-radius:14px;padding:24px;max-width:760px;margin:0 auto;background:#fff}
+.field{margin:0 0 18px}
+.field > label,.field > .label{display:block;font-weight:700;margin-bottom:4px}
+.req,.opt{display:inline-block;font-size:11px;font-weight:700;border-radius:4px;padding:0 6px;margin-left:6px;vertical-align:2px}
+.req{background:var(--red);color:#fff}
+.opt{background:#E4E7EB;color:var(--sub)}
+input[type=text],input[type=email],input[type=tel],select,textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid #B8C0CC;border-radius:8px;background:#fff}
+textarea{min-height:110px}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--main);outline-offset:1px}
+.hint{font-size:13px;color:var(--sub);margin:2px 0 0}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;border:0;padding:0;margin:0}
+.checks legend{font-weight:700;margin-bottom:4px;padding:0}
+.check{display:flex;align-items:flex-start;gap:8px;font-weight:400}
+.check input{margin-top:6px;width:18px;height:18px;flex:none}
+.privacy{border:1px solid var(--line);background:#FAFBFC;border-radius:8px;padding:10px 12px;font-size:13px;color:var(--sub);max-height:120px;overflow:auto;margin-bottom:8px}
+.field-err{color:var(--red);font-size:14px;font-weight:700;margin:4px 0 0}
+.err-box{border:2px solid var(--red);background:#FFF4F5;color:var(--red);border-radius:8px;padding:10px 14px;font-weight:700;margin-bottom:16px;white-space:pre-line}
+[aria-invalid=true]{border-color:var(--red)!important;background:#FFF8F8!important}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;align-items:center}
+.steps{display:flex;gap:6px;justify-content:center;margin:20px 0 16px;font-size:14px;flex-wrap:wrap}
+.steps span{padding:4px 14px;border-radius:999px;background:#EEF1F4;color:var(--sub)}
+.steps span.on{background:var(--main);color:#fff;font-weight:700}
+.confirm th{width:32%;text-align:left;background:#FAFBFC}
+.confirm td{text-align:left;white-space:pre-wrap}
+.done{text-align:center}
+.done .big{font-size:22px;font-weight:800;color:var(--red);margin:8px 0}
+.done .dl{margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+
+footer{text-align:center;color:var(--sub);font-size:13px;padding:24px 16px;border-top:1px solid var(--line);background:var(--bg)}
+
+@media (max-width:900px){
+  .features{grid-template-columns:repeat(2,1fr)}
+  .plans{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr;padding:28px 20px}
+  .hero svg{max-width:320px}
+}
+@media (max-width:560px){
+  .features,.stats,.checks{grid-template-columns:1fr}
+  .hero h1{font-size:25px}
+  .gnav{margin-left:0;width:100%}
+  .gnav a{padding:6px 8px;font-size:14px}
+  .form-card{padding:16px}
+}
+#faq,#features,#plan-detail{scroll-margin-top:90px}
+.plan-detail .confirm th{width:48%}

@@ -1,0 +1,137 @@
+/* みらいドライブ（練習用）。サイトの色は紫（--main）。 */
+:root{
+  --ink:#1F2328; --sub:#5B6370; --line:#DCDFE5; --bg:#FFFFFF; --soft:#F6F4F9;
+  --main:#5B3A8E; --main-soft:#EEE8F6; --red:#C8102E; --red-soft:#FDECEE; --ok:#1E7B4C;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font-family:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;font-size:15px;line-height:1.65}
+a{color:var(--main)}
+.band{background:#E9233E;color:#fff;text-align:center;font-weight:700;padding:6px 12px;font-size:14px}
+.muted{color:var(--sub);font-size:13px}
+.hidden{display:none !important}
+
+/* 上の帯 */
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;border-bottom:1px solid var(--line);background:#fff}
+.brand{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.back-search{font-size:13px;font-weight:700;text-decoration:none;color:var(--sub);border:1px solid var(--line);border-radius:6px;padding:3px 8px;margin-right:6px;white-space:nowrap}
+.back-search:hover{color:var(--main);border-color:var(--main)}
+.brand-name{font-size:20px;font-weight:800;color:var(--main);letter-spacing:.02em}
+.brand-sub{font-size:12px;color:var(--sub)}
+.who{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:14px}
+
+/* ボタン */
+.btn{font:inherit;font-size:14px;font-weight:700;border-radius:6px;padding:7px 14px;cursor:pointer;border:1px solid #B9BEC8;background:#fff;color:var(--ink)}
+.btn:hover{background:var(--soft)}
+.btn-main{background:var(--main);border-color:var(--main);color:#fff}
+.btn-main:hover{background:#4A2E75}
+.btn-danger{background:var(--red);border-color:var(--red);color:#fff}
+.btn-danger:hover{background:#A50D26}
+.btn-sub{background:#fff}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-small{padding:3px 10px;font-size:13px}
+
+/* 左右の並び */
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:calc(100vh - 160px)}
+.side{border-right:1px solid var(--line);padding:16px;background:var(--soft)}
+.side-h{font-size:13px;color:var(--sub);margin:18px 0 6px;font-weight:700}
+.search label{display:block;font-size:13px;font-weight:700;margin-bottom:4px}
+.search-row{display:flex;gap:6px}
+.search input{flex:1;min-width:0;font:inherit;padding:6px 8px;border:1px solid #B9BEC8;border-radius:6px}
+.tree ul,#tree ul{list-style:none;margin:0;padding-left:16px}
+#tree > ul{padding-left:0}
+#tree li{margin:1px 0}
+#tree a{display:block;padding:4px 8px;border-radius:6px;text-decoration:none;color:var(--ink);font-size:14px}
+#tree a:hover{background:#E6E1EE}
+#tree a.current{background:var(--main);color:#fff;font-weight:700}
+#tree .fold::before{content:"";display:inline-block;width:12px;height:9px;margin-right:6px;border:1.5px solid currentColor;border-radius:2px;vertical-align:0}
+#tree .trash-link{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+.today{font-size:12px;color:var(--sub);margin-top:24px}
+
+main{padding:18px 24px;min-width:0}
+main:focus{outline:none}
+.crumbs{font-size:13px;color:var(--sub);margin-bottom:4px}
+.crumbs a{color:var(--sub)}
+h1.page-h{font-size:21px;margin:0 0 10px}
+.count{font-size:13px;color:var(--sub);margin:0 0 8px}
+
+/* 道具の列 */
+.tools{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:8px;background:#fff;margin-bottom:10px}
+.tools .sep{width:1px;height:24px;background:var(--line);margin:0 4px}
+.upload{display:inline-flex;align-items:center;gap:6px;font-size:13px}
+.upload label{font-weight:700}
+.upload input{font-size:12px;max-width:220px}
+.selinfo{font-size:13px;color:var(--sub);margin-left:auto}
+
+/* 一覧の表 */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{width:100%;border-collapse:collapse;background:#fff}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:middle}
+thead th{background:var(--soft);color:var(--sub);font-size:13px;font-weight:700;white-space:nowrap}
+tbody tr:hover{background:#FAF8FC}
+tbody tr.sel{background:var(--main-soft)}
+td.c-check{width:36px}
+td.c-name a{font-weight:700;text-decoration:none;color:var(--ink)}
+td.c-name a:hover{text-decoration:underline;color:var(--main)}
+td.nowrap{white-space:nowrap}
+.ico{display:inline-block;min-width:38px;padding:1px 4px;margin-right:8px;border-radius:4px;font-size:11px;font-weight:700;text-align:center;color:#fff;vertical-align:1px}
+.k-folder{background:#7A6A92}.k-pdf{background:#B5473A}.k-txt{background:#5E6773}.k-csv{background:#2E7D5B}
+.k-xlsx{background:#3B7A3F}.k-docx{background:#3D5A99}.k-jpg,.k-png{background:#A0662B}.k-other{background:#888}
+.badge{display:inline-block;margin-left:8px;padding:0 8px;border-radius:999px;font-size:12px;background:var(--main-soft);color:var(--main);font-weight:700}
+.badge-red{background:var(--red-soft);color:var(--red)}
+.empty{padding:28px;text-align:center;color:var(--sub)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ファイルの中身 */
+.meta th{width:120px;color:var(--sub);font-weight:700;background:#fff}
+.meta{margin-bottom:16px;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.content-box{border:1px solid var(--line);border-radius:8px;padding:16px;background:#fff}
+.content-box h2{font-size:15px;margin:0 0 8px}
+.sample-note{display:inline-block;font-size:12px;background:var(--main-soft);color:var(--main);border-radius:4px;padding:1px 8px;margin-bottom:8px;font-weight:700}
+pre.body{white-space:pre-wrap;word-break:break-word;font-family:inherit;font-size:15px;margin:0;line-height:1.8}
+.picture{display:flex;align-items:center;justify-content:center;height:150px;border-radius:8px;background:repeating-linear-gradient(45deg,#EFE7DA,#EFE7DA 12px,#E7DCCB 12px,#E7DCCB 24px);color:#6B4F2A;font-weight:700;margin-bottom:12px}
+.actions{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+
+/* 窓 */
+.modal-back{position:fixed;inset:0;background:rgba(20,16,30,.45);display:flex;align-items:flex-start;justify-content:center;padding:40px 16px;overflow:auto;z-index:50}
+.modal{background:#fff;border-radius:10px;width:100%;max-width:560px;padding:20px 22px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.modal h2{font-size:18px;margin:0 0 12px}
+.modal label.f{display:block;font-weight:700;margin:12px 0 4px}
+.modal input[type=text],.modal input[type=email],.modal select,.modal textarea{width:100%;font:inherit;padding:8px 10px;border:1px solid #B9BEC8;border-radius:6px;background:#fff}
+.modal textarea{min-height:64px}
+.modal .row-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:18px;flex-wrap:wrap}
+.modal .err{color:var(--red);font-weight:700;margin-top:10px;white-space:pre-line}
+.dest-list{max-height:300px;overflow:auto;border:1px solid var(--line);border-radius:6px;padding:6px 10px;margin:0}
+.dest-list legend{font-weight:700;padding:0 4px}
+.dest-list div{padding:3px 0}
+.check-line{display:flex;gap:8px;align-items:flex-start;margin:12px 0 4px;font-weight:700}
+.check-line input{margin-top:5px;width:16px;height:16px}
+.warn{border:2px solid var(--red);background:var(--red-soft);color:var(--red);border-radius:8px;padding:10px 12px;font-weight:700;margin:8px 0}
+.info{border:1px solid var(--line);background:var(--soft);border-radius:8px;padding:8px 12px;font-size:14px;margin:8px 0}
+.quick{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;font-size:13px;align-items:center}
+.share-box{border-top:1px solid var(--line);margin-top:14px;padding-top:6px}
+
+/* 完了の画面 */
+.done{max-width:680px;margin:20px auto;text-align:center;border:1px solid var(--line);border-radius:12px;padding:28px 24px}
+.done h1{font-size:20px;margin:0 0 10px}
+.done .big{font-size:21px;font-weight:800;color:var(--red);margin:10px 0}
+.done table{margin:16px 0;text-align:left;border:1px solid var(--line)}
+.done table th{width:180px;color:var(--sub);background:var(--soft)}
+.done .row-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+
+/* 知らせ */
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#2A2433;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;max-width:90vw;display:none;z-index:60}
+.toast.show{display:block}
+.toast button{margin-left:10px}
+
+footer{text-align:center;color:var(--sub);font-size:13px;padding:20px;border-top:1px solid var(--line)}
+
+@media (max-width:760px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .brand-sub{font-size:11px}
+  .upload input{max-width:100%}
+  .side{border-right:0;border-bottom:1px solid var(--line)}
+  main{padding:14px 16px}
+  .selinfo{margin-left:0;width:100%}
+  th.h-owner,td.c-owner,th.h-size,td.c-size{display:none}
+}
