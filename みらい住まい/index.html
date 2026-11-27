@@ -150,7 +150,7 @@
       <p>まだ送信されていません。内容を確かめて、よければ［送信する］を押してください。</p>
       <div class="room-mini" id="cf-room"></div>
       <table id="cf-table"></table>
-      <p style="font-size:13px;color:#5B6370">送信すると、取り扱いの不動産会社に問い合わせが届きます（練習用のサイトなので、実際にはどこにも届きません）。</p>
+      <p style="font-size:13px;color:#5B6370">送信すると、取り扱いの不動産会社に問い合わせが届きます（練習用：不動産会社には届きません。入力したメールアドレスに【テスト】の受付メールが届きます）。</p>
       <div class="actions">
         <button type="button" class="btn btn-sub" id="cf-back">入力画面に戻る</button>
         <button type="button" class="btn btn-send" id="cf-send">送信する</button>
@@ -162,7 +162,8 @@
   <section id="view-done" class="hidden">
     <div class="card done">
       <p class="big">問い合わせの送信が完了しました（練習）</p>
-      <p>練習用のサイトなので、問い合わせは送信されていません。不動産会社にもどこにも届いていません。</p>
+      <p>練習用のサイトなので、不動産会社には届いていません。</p>
+      <p id="mail-note" hidden style="background:#EEF6FF;border:1px solid #9CC3F5;border-radius:8px;padding:10px 14px;color:#1F2328;font-weight:700"></p>
       <p>本番では、このボタンは人が自分で押す所です。AI には『送信の前で止まって』と頼みましょう。</p>
       <p id="done-room" style="color:#5B6370;font-size:14px"></p>
       <div class="actions" style="justify-content:center">
@@ -177,6 +178,7 @@
   みらい住まい（架空）｜ワークショップの練習用｜©2026 EXTRA Company Ltd.
 </footer>
 
+<script src="../mail.js"></script>
 <script src="js/data.js"></script>
 <script src="js/app.js"></script>
 </body>

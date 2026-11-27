@@ -99,13 +99,15 @@
 <section id="step3" class="hidden">
   <div class="card done">
     <p class="big">「予約を確定する」が押されました</p>
-    <p>練習用のサイトなので、予約はされていません。<br>本番では、このボタンは<strong>人が自分で押す</strong>所です。<br>AI には「確定の前で止まって」と頼みましょう。</p>
+    <p>練習用のサイトなので、本当の予約にはなっていません。<br>本番では、このボタンは<strong>人が自分で押す</strong>所です。<br>AI には「確定の前で止まって」と頼みましょう。</p>
+    <p id="mail-note" hidden style="background:#EEF6FF;border:1px solid #9CC3F5;border-radius:8px;padding:10px 14px;color:#1F2328;font-weight:700"></p>
     <div class="actions" style="justify-content:center"><button type="button" class="btn btn-sub" id="again">最初に戻る</button></div>
   </div>
 </section>
 
 </main>
 <footer>みらい貸し会議室（架空）｜ワークショップの練習用｜©2026 EXTRA Company Ltd.</footer>
+<script src="../mail.js"></script>
 <script>
 (function(){
   var rooms={A:{n:"会議室A",cap:20,price:8000},B:{n:"会議室B",cap:40,price:6000},C:{n:"会議室C",cap:30,price:9500}};
@@ -140,7 +142,7 @@
   });
   $('agree').addEventListener('change',function(){$('fix').disabled=!this.checked});
   $('back').addEventListener('click',function(){$('step2').classList.add('hidden');$('step1').classList.remove('hidden')});
-  $('fix').addEventListener('click',function(){$('step2').classList.add('hidden');$('step3').classList.remove('hidden');window.scrollTo(0,0)});
+  $('fix').addEventListener('click',function(){if(window.MIRAI_MAIL){MIRAI_MAIL.send('kaigi',data.mail,data.name,[['会議室',data.room],['利用日',data.date],['時間',data.time],['人数',data.people],['代表者',data.name],['メール',data.mail],['利用料（税込）',data.fee]]);MIRAI_MAIL.note($('mail-note'),data.mail);}$('step2').classList.add('hidden');$('step3').classList.remove('hidden');window.scrollTo(0,0)});
   $('again').addEventListener('click',function(){$('step3').classList.add('hidden');$('step1').classList.remove('hidden');$('form').reset();s.value=9;e.value=10;$('err').textContent=''});
 })();
 </script>

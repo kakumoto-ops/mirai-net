@@ -168,7 +168,19 @@
   }
 
   $("back-edit").addEventListener("click", function () { location.hash = "#form"; });
-  $("send").addEventListener("click", function () { state.sent = true; location.hash = "#done"; });
+  $("send").addEventListener("click", function () {
+    var d = state.data;
+    if (d && window.MIRAI_MAIL) {
+      MIRAI_MAIL.send("kintai", d.mail, d.person, [
+        ["会社名", d.company], ["部署名", d.dept], ["お名前", d.person], ["メールアドレス", d.mail],
+        ["電話番号", d.tel || "（入力なし）"], ["従業員数", d.size],
+        ["知りたいこと", d.wants.length ? d.wants.join("、") : "（選んでいません）"],
+        ["ご相談・ご質問", d.memo || "（入力なし）"], ["メールマガジン", d.magazine ? "受け取る" : "受け取らない"]
+      ]);
+      MIRAI_MAIL.note($("mail-note"), d.mail);
+    }
+    state.sent = true; location.hash = "#done";
+  });
 
   function resetAll() {
     form.reset(); // メールマガジンは最初の状態（チェックあり）に戻る

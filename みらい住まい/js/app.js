@@ -261,6 +261,16 @@
     }).join("");
     $("cf-back").onclick = function () { location.hash = "#/inquiry/" + p.id; };
     $("cf-send").onclick = function () {
+      if (window.MIRAI_MAIL) {
+        var rows = FIELDS.map(function (f) {
+          var v = draft[f[1]];
+          if (f[1] === "visit" && !v) v = "内見は希望しない";
+          return [f[2], v || "（入力なし）"];
+        });
+        rows.unshift(["物件", p.name + " " + p.room + "号室（" + p.id + "）／取り扱い " + p.agent.name]);
+        MIRAI_MAIL.send("sumai", draft.mail, draft.name, rows);
+        MIRAI_MAIL.note($("mail-note"), draft.mail);
+      }
       draft = {}; saveDraft();
       location.hash = "#/done/" + p.id;
     };
