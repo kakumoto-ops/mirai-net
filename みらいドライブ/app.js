@@ -189,7 +189,7 @@
     if (!alive(id)) return viewMissing('このファイル「' + esc(x.name) + '」はゴミ箱にあります。［ゴミ箱］から元に戻せます。');
     var k = kindOf(x), isSample = !(x.kind === 'txt' || x.kind === 'csv');
     var body;
-    if (x.uploaded) body = '<pre class="body">' + esc(x.body) + '</pre>';
+    if (x.uploaded || x.raw && x.format !== 'csv') body = '<pre class="body">' + esc(x.body.replace(/^\ufeff/, '')) + '</pre>';
     else if (x.format === 'csv') body = csvTable(x.body);
     else body = '<pre class="body">' + esc(x.body) + '</pre>';
     var pic = (x.kind === 'jpg' || x.kind === 'png') ? '<div class="picture">' + (x.kind === 'jpg' ? '写真' : '画像') + '（練習用の見本・絵の代わりに文字で説明しています）</div>' : '';
@@ -220,7 +220,7 @@
       pic + body + '</section>';
   }
   function csvTable(text) {
-    var rows = text.split('\n').map(function (l) { return l.split(','); });
+    var rows = text.replace(/^\ufeff/, '').replace(/(\r?\n)+$/, '').split(/\r?\n/).map(function (l) { return l.split(','); });
     var head = rows.shift();
     return '<div class="tbl-wrap"><table><thead><tr>' + head.map(function (c) { return '<th>' + esc(c) + '</th>'; }).join('') + '</tr></thead><tbody>' +
       rows.map(function (r) { return '<tr>' + r.map(function (c) { return '<td>' + esc(c) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
@@ -396,6 +396,7 @@
       if (isFolder(x)) { skipped.push(x.name); return; }
       var name, text, type;
       if (x.uploaded) { name = x.name + '_練習用.txt'; text = '【練習用】' + x.name + '\n' + x.body; type = 'text/plain;charset=utf-8'; }
+      else if (x.raw) { name = x.name; text = x.body; type = (x.kind === 'csv' ? 'text/csv' : 'text/plain') + ';charset=utf-8'; }   // 元のファイルと同じ中身（BOM・改行もそのまま）
       else if (x.kind === 'txt') { name = x.name; text = x.body; type = 'text/plain;charset=utf-8'; }
       else if (x.kind === 'csv') { name = x.name; text = '﻿' + x.body; type = 'text/csv;charset=utf-8'; }
       else { name = x.name + '_中身の見本.txt'; text = '【練習用の中身の見本】\n元のファイル：' + x.name + '（' + KIND_LABEL[kindOf(x)] + '）\n\n' + x.body + '\n'; type = 'text/plain;charset=utf-8'; }
@@ -403,8 +404,8 @@
         var blob = new Blob([text], { type: type });
         var a = document.createElement('a');
         a.href = URL.createObjectURL(blob); a.download = name;
-        document.body.appendChild(a); a.click();
-        setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+        document.body.appendChild(a);
+        setTimeout(function () { a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1500); }, done.length * 400);   // 続けて落とすときは少し間をあける
         done.push(name);
       } catch (e) { skipped.push(x.name); }
     });
