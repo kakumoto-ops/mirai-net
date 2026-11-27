@@ -87,7 +87,7 @@
       inStart: '15:00', inEnd: '25:00', out: '10:00', pay: ['現地払い', '請求書払い'], taxDisplay: 'incl', full: [],
       plans: [P('a', SU, '素泊まり', 'free', 7000), P('b', HAYA_SU, '素泊まり', 'nonref', 6300), P('c', CH, '朝食付き', 'free', 8300)] },
     { id: 'O02', region: 'osaka', name: 'ホテル 川霧（かわぎり）新大阪', rec: 2, color: '#4E5D7A', floors: 8, fri: 2000, sat: 5000,
-      catch: '平日はおトクな料金。新幹線の改札まで歩いてすぐ。',
+      catch: '平日はおトクな料金。新幹線での出張に便利です。',
       station: 'JR新大阪駅', walk: 8, mainWalk: 8, access: 'JR新大阪駅 北口から徒歩8分',
       score: 4.0, count: 88, smoking: '禁煙', facilities: ['Wi-Fi', '電子レンジ'],
       inStart: '15:00', inEnd: '24:00', out: '10:00', pay: ['現地払い', '請求書払い'], taxDisplay: 'incl', full: [],
